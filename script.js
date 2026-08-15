@@ -32,18 +32,18 @@ const siteData = {
             id: "programmed-with-danger",
             seriesId: "arrow-jade",
             title: "Programmed With Danger",
-            status: "Coming Soon",
+            status: "Published",
             cover: "PWD.png",
             description: "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time.",
             quote: "— Arrow Jade",
-            published: false
+            published: true
         },
         {
             id: "rigged-with-danger",
             seriesId: "arrow-jade",
             title: "Rigged With Danger",
             status: "Coming Soon",
-            cover: "rwd.png",
+            cover: "RWD.png",
             description: "",
             quote: "",
             published: false
@@ -79,7 +79,8 @@ function getSeries(seriesId) {
 }
 
 function getPublishedBook() {
-    return siteData.books.find(book => book.published === true);
+    const published = siteData.books.filter(book => book.published === true);
+    return published.length ? published[published.length - 1] : null;
 }
 
 function renderFeaturedBook() {
