@@ -51,8 +51,8 @@ const siteData = {
     ]
 };
 
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
+const navToggle = document.getElementById("navToggle");
+const nav = document.getElementById("nav");
 const bookModal = document.getElementById("bookModal");
 const bookModalContent = document.getElementById("bookModalContent");
 
@@ -62,9 +62,11 @@ function initialize() {
     if (FUTURE_REVEAL === "ON") {
         document.body.classList.add("show-future");
     }
+
     renderWebsite();
     setupNavigation();
     setupModals();
+    setupScrollReveal();
     document.getElementById("currentYear").textContent = new Date().getFullYear();
 }
 
@@ -124,7 +126,7 @@ function renderSeries() {
         const books = siteData.books.filter(book => book.seriesId === series.id);
 
         return `
-            <article class="series-card">
+            <article class="series-card reveal">
                 <div class="series-number">${escapeHtml(series.number || String(index + 1).padStart(2, "0"))}</div>
                 <h3>${escapeHtml(series.name)}</h3>
                 <p>${escapeHtml(series.description || "")}</p>
@@ -151,7 +153,7 @@ function renderBooks() {
         const series = getSeries(book.seriesId);
 
         return `
-            <article class="book-card" data-book-id="${escapeHtml(book.id)}" data-open-book tabindex="0" role="button">
+            <article class="book-card reveal" data-book-id="${escapeHtml(book.id)}" data-open-book tabindex="0" role="button">
                 <div class="book-cover">
                     ${createCoverMarkup(book.cover, book.title)}
                 </div>
@@ -177,17 +179,17 @@ function createCoverMarkup(path, title) {
 }
 
 function setupNavigation() {
-    if (!menuToggle || !mainNav) return;
+    if (!navToggle || !nav) return;
 
-    menuToggle.addEventListener("click", () => {
-        const open = mainNav.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", String(open));
+    navToggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(open));
     });
 
-    mainNav.querySelectorAll("a").forEach(link => {
+    nav.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
-            mainNav.classList.remove("open");
-            menuToggle.setAttribute("aria-expanded", "false");
+            nav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
         });
     });
 }
@@ -207,6 +209,15 @@ function setupModals() {
 
     document.addEventListener("keydown", event => {
         if (event.key === "Escape") closeBookModal();
+
+        if (event.key === "Enter" || event.key === " ") {
+            const openBook = event.target.closest("[data-open-book]");
+            if (openBook) {
+                event.preventDefault();
+                const bookId = openBook.dataset.bookId;
+                if (bookId) openBookModal(bookId);
+            }
+        }
     });
 }
 
@@ -224,7 +235,7 @@ function openBookModal(bookId) {
                 </div>
             </div>
             <div class="modal-book-info">
-                <span class="eyebrow">${escapeHtml(series ? series.name : "TEAM HQ")}</span>
+                <span class="label">${escapeHtml(series ? series.name : "TEAM HQ")}</span>
                 <h2>${escapeHtml(book.title)}</h2>
                 <span class="featured-status">${escapeHtml(book.status)}</span>
                 ${book.description
@@ -245,6 +256,29 @@ function closeBookModal() {
     bookModal.classList.remove("active");
     bookModal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
+}
+
+function setupScrollReveal() {
+    const reveals = document.querySelectorAll(".reveal");
+
+    if (!("IntersectionObserver" in window) || !reveals.length) {
+        reveals.forEach(el => el.classList.add("visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+    });
+
+    reveals.forEach(el => observer.observe(el));
 }
 
 function escapeHtml(value) {
