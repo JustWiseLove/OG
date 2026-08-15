@@ -3,54 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TEAM HQ — Talented Experts Analyzing Mysteries. The official publishing company of author Skyler Hensley.">
+    <meta name="description" content="TEAM HQ — Talented Experts Analyzing Mysteries. The official home of A TEAM SERIES by Skyler Hensley.">
     <meta name="author" content="Skyler Hensley">
-    <title>A TEAM SERIES | Skyler Hensley</title>
+    <title>A TEAM SERIES | TEAM HQ</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="bg-texture"></div>
+    <div class="bg-noise"></div>
 
     <header class="site-header">
         <div class="header-inner">
             <a href="#home" class="brand">
                 <img src="LOGO.PNG" alt="TEAM HQ" class="brand-logo">
             </a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
+
             <nav class="main-nav" id="mainNav">
                 <a href="#home">Home</a>
                 <a href="#books">Books</a>
                 <a href="#series">Series</a>
+                <a href="#about">About the Author</a>
                 <a href="#family-tree">Family Tree</a>
-                <a href="#about">About</a>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- HERO - Desktop looks like the laptop, Mobile looks like the phone -->
         <section class="hero" id="home">
+            <div class="hero-bg">
+                <img src="CITY.PNG" alt="" class="hero-city-img">
+                <div class="hero-overlay"></div>
+            </div>
+
             <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">NEW SERIES LIVE</div>
-                    <h1>WELCOME TO<br><span>A TEAM SERIES</span></h1>
-                    <p class="hero-tagline">Where teamwork, bravery, and truth always rise.</p>
-                    <p class="hero-desc">Thrilling stories. Strong family. One mission: uncover the truth and protect what matters.</p>
-                    <div class="hero-buttons">
-                        <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Buy Now</a>
-                        <a href="#series" class="btn btn-secondary">Explore the Series</a>
-                    </div>
+                <!-- Mobile-only block (matches the phone screenshot) -->
+                <div class="hero-mobile">
+                    <img src="LOGO.PNG" alt="TEAM HQ" class="hero-mobile-logo">
+                    <h1 class="hero-mobile-title">THRILLING BOOKS.<br>UNFORGETTABLE<br>ADVENTURES.</h1>
+                    <a href="#books" class="btn btn-blue">BROWSE BOOKS</a>
                 </div>
-                <div class="hero-visual">
-                    <img src="CITY.PNG" alt="TEAM looking over the city" class="hero-city">
+
+                <!-- Desktop block (matches the laptop screenshot) -->
+                <div class="hero-desktop">
+                    <h1>WELCOME TO<br><span>A TEAM SERIES</span></h1>
+                    <p class="hero-subtitle">Where teamwork, bravery, and truth always rise.</p>
+                    <a href="#series" class="btn btn-green">EXPLORE THE SERIES</a>
                 </div>
             </div>
         </section>
 
-        <section class="featured-section section" id="books">
+        <!-- FEATURED BOOK -->
+        <section class="section" id="books">
             <div class="section-heading">
                 <div>
                     <span class="eyebrow">LATEST RELEASE</span>
@@ -61,16 +68,18 @@
             <div id="featuredBookContainer"></div>
         </section>
 
-        <section class="series-section section" id="series">
+        <!-- SERIES -->
+        <section class="section" id="series">
             <div class="section-heading centered">
                 <span class="eyebrow">THE COLLECTION</span>
                 <h2>Explore the Series</h2>
-                <p>Discover the stories inside the TEAM HQ universe.</p>
+                <p>Action. Adventure. Family. Mystery.</p>
             </div>
             <div class="series-grid" id="seriesGrid"></div>
         </section>
 
-        <section class="family-tree-section section" id="family-tree">
+        <!-- FAMILY TREE -->
+        <section class="section family-tree-section" id="family-tree">
             <details class="family-tree-details">
                 <summary class="family-tree-summary">
                     <div class="section-heading centered">
@@ -80,7 +89,7 @@
                     </div>
                 </summary>
                 <div class="family-tree-content">
-                    <div class="vt-tree" id="familyTreeRoot">
+                    <div class="vt-tree">
                         <div class="vt-person couple">
                             <span>Christopher Evans</span>
                             <span class="union">∞</span>
@@ -183,7 +192,8 @@
             </details>
         </section>
 
-        <section class="all-books-section section" id="allBooks">
+        <!-- ALL BOOKS -->
+        <section class="section" id="allBooks">
             <div class="section-heading">
                 <div>
                     <span class="eyebrow">THE LIBRARY</span>
@@ -193,23 +203,15 @@
             <div class="books-grid" id="allBooksGrid"></div>
         </section>
 
-        <section class="about-section section" id="about">
+        <!-- ABOUT -->
+        <section class="section" id="about">
             <div class="about-card">
                 <div class="about-mark">SKY</div>
                 <div class="about-content">
                     <span class="eyebrow">THE AUTHOR</span>
                     <h2>Skyler Hensley</h2>
-                    <p>
-                        Skyler Hensley is the author behind TEAM HQ.
-                        With a growing collection of stories and
-                        approximately fifteen books already written,
-                        Skyler is building a world of mystery,
-                        adventure, danger, and imagination one story
-                        at a time.
-                    </p>
-                    <p>
-                        TEAM HQ is the publishing headquarters for those stories — beginning with the Arrow Jade Series followed by the highly anticipated Ace Shard Series and more adventures to come!
-                    </p>
+                    <p>Skyler Hensley is the author behind TEAM HQ. With a growing collection of stories and approximately fifteen books already written, Skyler is building a world of mystery, adventure, danger, and imagination one story at a time.</p>
+                    <p>TEAM HQ is the publishing headquarters for those stories — beginning with the Arrow Jade Series followed by the highly anticipated Ace Shard Series and more adventures to come!</p>
                 </div>
             </div>
         </section>
@@ -223,7 +225,7 @@
                         <span>Talented Experts Analyzing Mysteries</span>
                     </div>
                 </div>
-                <div class="footer-author">
+                <div class="footer-copy">
                     © <span id="currentYear"></span> TEAM HQ · Skyler Hensley
                 </div>
             </div>
