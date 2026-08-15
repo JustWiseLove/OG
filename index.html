@@ -9,27 +9,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-effects">
-        <div class="fingerprint fingerprint-one"></div>
-        <div class="fingerprint fingerprint-two"></div>
-        <div class="dust dust-one"></div>
-        <div class="dust dust-two"></div>
-        <div class="dust dust-three"></div>
-    </div>
+    <div class="bg-texture"></div>
 
     <header class="site-header">
         <div class="header-inner">
             <a href="#home" class="brand">
-                <div class="brand-magnifier">
-                    <div class="brand-glass">
-                        <span class="brand-team">TEAM</span>
-                    </div>
-                    <div class="brand-handle"></div>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-name">A TEAM SERIES</span>
-                    <span class="brand-tagline">Talented Experts Analyzing Mysteries</span>
-                </div>
+                <img src="LOGO.PNG" alt="TEAM HQ" class="brand-logo">
             </a>
             <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
                 <span></span>
@@ -49,30 +34,18 @@
     <main>
         <section class="hero" id="home">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    THE OFFICIAL HOME OF TEAM HQ
+                <div class="hero-text">
+                    <div class="hero-badge">NEW SERIES LIVE</div>
+                    <h1>WELCOME TO<br><span>A TEAM SERIES</span></h1>
+                    <p class="hero-tagline">Where teamwork, bravery, and truth always rise.</p>
+                    <p class="hero-desc">Thrilling stories. Strong family. One mission: uncover the truth and protect what matters.</p>
+                    <div class="hero-buttons">
+                        <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Buy Now</a>
+                        <a href="#series" class="btn btn-secondary">Explore the Series</a>
+                    </div>
                 </div>
-                <h1>
-                    Every mystery
-                    <span>has a story.</span>
-                </h1>
-                <p class="hero-description">
-                    Welcome to TEAM HQ, the publishing headquarters of
-                    <strong>Skyler Hensley</strong> — where mysteries,
-                    adventures, danger, and imagination come together.
-                </p>
-                <div class="hero-buttons">
-                    <a href="https://www.lulu.com/search?contributor=Skyler+Hensley" class="button button-primary" target="_blank" rel="noopener noreferrer">
-                        Buy Now
-                        <span>→</span>
-                    </a>
-                    <a href="#books" class="button button-secondary">
-                        Featured
-                    </a>
-                    <a href="#series" class="button button-secondary">
-                        View Series
-                    </a>
+                <div class="hero-visual">
+                    <img src="CITY.PNG" alt="TEAM looking over the city" class="hero-city">
                 </div>
             </div>
         </section>
@@ -102,13 +75,12 @@
                 <summary class="family-tree-summary">
                     <div class="section-heading centered">
                         <span class="eyebrow">THE LINEAGE</span>
-                        <h2>Our Family Tree</h2>
+                        <h2>TEAM FAMILY TREE</h2>
                         <p class="family-tree-hint">Tap to expand</p>
                     </div>
                 </summary>
                 <div class="family-tree-content">
                     <div class="vt-tree" id="familyTreeRoot">
-
                         <div class="vt-person couple">
                             <span>Christopher Evans</span>
                             <span class="union">∞</span>
@@ -118,15 +90,12 @@
                         <details class="vt-branch">
                             <summary class="vt-node">Henry Evans <span class="vt-spouse">∞ Beth Brown</span></summary>
                             <div class="vt-children">
-
                                 <details class="vt-branch">
                                     <summary class="vt-node">Nathan Evans <span class="vt-spouse">∞ Kate Miller</span></summary>
                                     <div class="vt-children">
-
                                         <details class="vt-branch">
                                             <summary class="vt-node">Arthur Evans <span class="vt-spouse">∞ Alicia Johnson</span></summary>
                                             <div class="vt-children">
-
                                                 <details class="vt-branch">
                                                     <summary class="vt-node">Xander Evans <span class="vt-spouse">∞ Lena Clark</span></summary>
                                                     <div class="vt-children">
@@ -143,20 +112,17 @@
                                                         </details>
                                                     </div>
                                                 </details>
-
                                                 <div class="vt-person">James Evans</div>
                                                 <div class="vt-person">John Evans</div>
                                                 <div class="vt-person">Andrew Evans</div>
                                                 <div class="vt-person">Phillip Evans</div>
                                                 <div class="vt-person">Thomas Evans</div>
-
                                                 <details class="vt-branch">
                                                     <summary class="vt-node">Ava Evans <span class="vt-spouse">∞ Daniel Allen</span></summary>
                                                     <div class="vt-children">
                                                         <details class="vt-branch">
                                                             <summary class="vt-node">Fyra Allen <span class="vt-spouse">∞ Grant Thatcher</span></summary>
                                                             <div class="vt-children">
-
                                                                 <details class="vt-branch">
                                                                     <summary class="vt-node">Rate Thatcher <span class="vt-spouse">∞ Rachel Brook</span></summary>
                                                                     <div class="vt-children">
@@ -173,7 +139,6 @@
                                                                         <div class="vt-person">Eliza Thatcher</div>
                                                                     </div>
                                                                 </details>
-
                                                                 <details class="vt-branch">
                                                                     <summary class="vt-node">Traya Thatcher <span class="vt-spouse">∞ Rook Jade</span></summary>
                                                                     <div class="vt-children">
@@ -182,20 +147,16 @@
                                                                         <div class="vt-person">Oray Jade <span class="tag">Adopted</span></div>
                                                                     </div>
                                                                 </details>
-
                                                             </div>
                                                         </details>
                                                     </div>
                                                 </details>
-
                                             </div>
                                         </details>
-
                                         <div class="vt-person">Silvia Evans</div>
                                         <div class="vt-person">Jill Evans</div>
                                     </div>
                                 </details>
-
                                 <div class="vt-person">Mary Evans</div>
                                 <div class="vt-person">Anne Evans</div>
                                 <div class="vt-person">Will Evans</div>
@@ -217,7 +178,6 @@
                                 <div class="vt-person">Joe Evans</div>
                             </div>
                         </details>
-
                     </div>
                 </div>
             </details>
@@ -257,20 +217,14 @@
         <footer class="site-footer">
             <div class="footer-inner">
                 <div class="footer-brand">
-                    <div class="brand-magnifier footer-magnifier">
-                        <div class="brand-glass">
-                            <span class="brand-team">TEAM</span>
-                        </div>
-                        <div class="brand-handle"></div>
-                    </div>
+                    <img src="LOGO.PNG" alt="TEAM HQ" class="footer-logo">
                     <div>
                         <strong>TEAM HQ</strong>
                         <span>Talented Experts Analyzing Mysteries</span>
                     </div>
                 </div>
                 <div class="footer-author">
-                    © <span id="currentYear"></span>
-                    TEAM HQ · Skyler Hensley
+                    © <span id="currentYear"></span> TEAM HQ · Skyler Hensley
                 </div>
             </div>
         </footer>
