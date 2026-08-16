@@ -11,22 +11,22 @@
  * SERIES
  * id          – unique key (used for filtering)
  * name        – display name
- * badgeClass  – CSS class for the colored badge (danger | ace | coming)
+ * badgeClass  – CSS class for the colored badge (arrowjade | ace | coming)
  * description – short blurb
  * status      – "available" | "coming"
- * bookCount   – number shown in the meta (can be string like "3+")
+ * bookCount   – number shown in the meta
  * tags        – optional extra labels
  */
 const SERIES = [
   {
-    id: "danger",
-    name: "Danger Series",
-    badgeClass: "danger",
+    id: "arrowjade",
+    name: "Arrow Jade",
+    badgeClass: "arrowjade",
     description:
-      "When a mission goes wrong, everything changes. Follow Arrow Jade and the team as they race to uncover the truth and protect what matters most.",
+      "When a mission goes wrong, everything changes. Follow Arrow Jade and her team as they race to uncover the truth and protect what matters most.",
     status: "available",
     bookCount: "3 books",
-    tags: ["Action", "Family", "Mystery"],
+    tags: ["Action", "Adventure", "Mystery"],
   },
   {
     id: "ace",
@@ -45,34 +45,33 @@ const SERIES = [
  * id           – unique key
  * title        – full title
  * seriesId     – must match a SERIES.id
- * seriesOrder  – 1, 2, 3… (shown as “Book X in the Y Series”)
+ * seriesOrder  – 1, 2, 3… (shown as “Book X in the Arrow Jade series”)
  * status       – "available" | "coming"
  * isNew        – true → shows “NEW RELEASE!” badge
- * cover        – image path (relative). If missing, a styled fallback is shown.
+ * cover        – image path (relative to index.html). Place FWD.JPG, PWD.png, RWD.png in the SAME folder as index.html
  * blurb        – short description for cards & modal
  * longBlurb    – optional longer text for the modal
- * author       – defaults to Ava Evans if omitted
- * year         – optional
+ * author       – Skyler Hensley
  */
 const BOOKS = [
   {
     id: "fwd",
     title: "Framed With Danger",
-    seriesId: "danger",
+    seriesId: "arrowjade",
     seriesOrder: 1,
     status: "available",
     isNew: true,
-    cover: "FWD.JPG",          // place this file next to index.html (or in /images/)
+    cover: "FWD.JPG",
     blurb:
       "When a mission goes wrong, everything changes. Now the truth is the only way out. The chase begins.",
     longBlurb:
-      "Book 1 in the Danger Series. Arrow Jade and her team are thrust into a high-stakes mystery when a mission spirals out of control. Framed, hunted, and racing against time, they must uncover the truth before it’s too late. Family, courage, and loyalty are put to the ultimate test.",
-    author: "Ava Evans",
+      "Book 1 in the Arrow Jade series. Arrow Jade and her team are thrust into a high-stakes mystery when a mission spirals out of control. Framed, hunted, and racing against time, they must uncover the truth before it’s too late. Loyalty is tested. Courage is required. The chase has begun.",
+    author: "Skyler Hensley",
   },
   {
     id: "pwd",
     title: "Programmed With Danger",
-    seriesId: "danger",
+    seriesId: "arrowjade",
     seriesOrder: 2,
     status: "available",
     isNew: false,
@@ -80,13 +79,13 @@ const BOOKS = [
     blurb:
       "The secrets dig deeper. The danger is programmed. Arrow Jade and the team face their most complex mission yet.",
     longBlurb:
-      "Book 2 in the Danger Series. The team discovers that the threat is more calculated than anyone imagined. Technology, deception, and old allies collide as Arrow Jade races to stay one step ahead. Trust is fragile. The code is lethal.",
-    author: "Ava Evans",
+      "Book 2 in the Arrow Jade series. The team discovers that the threat is more calculated than anyone imagined. Technology, deception, and shifting alliances collide as Arrow Jade races to stay one step ahead. Trust is fragile. The code is lethal.",
+    author: "Skyler Hensley",
   },
   {
     id: "rwd",
     title: "Rigged With Danger",
-    seriesId: "danger",
+    seriesId: "arrowjade",
     seriesOrder: 3,
     status: "coming",
     isNew: false,
@@ -94,8 +93,8 @@ const BOOKS = [
     blurb:
       "The final pieces are in place. Everything is rigged. The ultimate showdown is coming.",
     longBlurb:
-      "Book 3 in the Danger Series — Coming Soon. All the threads converge. All the secrets surface. Arrow Jade and the TEAM must face the truth head-on in the most dangerous mission yet. The endgame has begun.",
-    author: "Ava Evans",
+      "Book 3 in the Arrow Jade series — Coming Soon. All the threads converge. All the secrets surface. Arrow Jade and the TEAM must face the truth head-on in the most dangerous mission yet. The endgame has begun.",
+    author: "Skyler Hensley",
   },
 ];
 
@@ -109,7 +108,6 @@ function getSeriesById(id) {
 
 function createCoverFallback(book) {
   const words = book.title.split(" ");
-  // Heuristic: first word(s) pink, last word green (matches ad style)
   const last = words.pop();
   const first = words.join(" ");
   return `
@@ -119,7 +117,7 @@ function createCoverFallback(book) {
         <span class="word1">${first}</span><br>
         <span class="word2">${last}</span>
       </div>
-      <span class="author">${book.author || "Ava Evans"}</span>
+      <span class="author">${book.author || "Skyler Hensley"}</span>
     </div>
   `;
 }
@@ -170,6 +168,7 @@ function renderBooks(filter = "all") {
         ? `<span class="book-status coming">Coming Soon</span>`
         : "";
 
+      // Cover image – must be in same folder as index.html (FWD.JPG, PWD.png, RWD.png)
       const coverContent = `
         <img src="${book.cover}" alt="Cover of ${book.title}" loading="lazy"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -193,7 +192,6 @@ function renderBooks(filter = "all") {
     })
     .join("");
 
-  // Attach click / keyboard handlers
   grid.querySelectorAll(".book-card").forEach((card) => {
     card.addEventListener("click", () => openBookModal(card.dataset.id));
     card.addEventListener("keydown", (e) => {
@@ -232,7 +230,7 @@ function openBookModal(bookId) {
       <h2 id="modalTitle">${book.title}</h2>
       <p class="blurb">${book.longBlurb || book.blurb}</p>
       <div class="modal-meta">
-        <span>${book.author || "Ava Evans"}</span>
+        <span>${book.author || "Skyler Hensley"}</span>
         <span>${book.status === "coming" ? "Coming Soon" : "Available Now"}</span>
         ${book.isNew ? "<span>New Release</span>" : ""}
       </div>
@@ -242,8 +240,6 @@ function openBookModal(bookId) {
 
   modal.hidden = false;
   document.body.style.overflow = "hidden";
-
-  // Focus the close button for accessibility
   modal.querySelector(".modal-close")?.focus();
 }
 
@@ -266,7 +262,6 @@ function initNav() {
     toggle.setAttribute("aria-expanded", open);
   });
 
-  // Close mobile nav when a link is clicked
   nav?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("open");
@@ -308,7 +303,6 @@ function initForm() {
     const data = new FormData(form);
     const name = data.get("name") || "Agent";
 
-    // No backend – friendly success message
     note.textContent = `Welcome to the team, ${name}! HQ has received your transmission. Stay sharp.`;
     form.reset();
 
@@ -323,7 +317,6 @@ function initYear() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
-// Smooth header background on scroll (subtle)
 function initHeaderScroll() {
   const header = document.querySelector(".site-header");
   window.addEventListener(
@@ -357,16 +350,11 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ============================================================
    HOW TO ADD A NEW BOOK
    ----------------------------------------------------------
-   1. Drop the cover image next to index.html (or in /images/).
+   1. Place the cover image in the SAME folder as index.html
+      (example: FWD.JPG, PWD.png, RWD.png).
    2. Copy an existing object in the BOOKS array and change:
-        - id          (unique string)
-        - title
-        - seriesId    (must exist in SERIES)
-        - seriesOrder (1, 2, 3…)
-        - status      ("available" or "coming")
-        - isNew       (true/false)
-        - cover       (filename)
-        - blurb / longBlurb
+        - id, title, seriesId, seriesOrder, status, isNew,
+          cover, blurb / longBlurb
    3. Save. The grid and filters update automatically.
 
    HOW TO ADD A NEW SERIES
