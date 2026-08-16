@@ -1,298 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TEAM HQ — Action, adventure, family & mystery. Official home of A TEAM SERIES by Skyler Hensley. Discover books that challenge the mind and the heart.">
-    <title>A TEAM SERIES | TEAM HQ</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A TEAM Series | TEAM HQ – Action. Adventure. Family. Mystery.</title>
+  <meta name="description" content="Thrilling stories. Strong family. One mission: Uncover the truth and protect what matters. Discover the A TEAM Series by Ava Evans – Danger Series & more." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <header class="header">
-        <div class="container header__inner">
-            <a href="#home" class="logo">
-                <img src="LOGO.PNG" alt="TEAM HQ">
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="nav" id="nav">
-                <a href="#home">Home</a>
-                <a href="#books">Books</a>
-                <a href="#why-read">Why Read</a>
-                <a href="#series">Series</a>
-                <a href="#family-tree">Family Tree</a>
-                <a href="#about">About</a>
-            </nav>
-        </div>
-    </header>
+  <!-- Particle / fingerprint texture overlay -->
+  <div class="bg-overlay" aria-hidden="true"></div>
 
-    <main>
-        <!-- HERO -->
-        <section class="hero" id="home">
-            <div class="hero__bg">
-                <img src="CITY.PNG" alt="" class="hero__city">
-                <div class="hero__overlay"></div>
-            </div>
-            <div class="container hero__content">
-                <div class="hero__mobile">
-                    <img src="LOGO.PNG" alt="TEAM HQ" class="hero__logo">
-                    <h1>THRILLING BOOKS.<br>UNFORGETTABLE<br>ADVENTURES.</h1>
-                    <p class="hero__tag">Action · Adventure · Family · Mystery</p>
-                    <div class="hero__actions">
-                        <a href="#books" class="btn btn--blue">Browse Books</a>
-                        <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn--outline" target="_blank" rel="noopener">Buy on Lulu</a>
-                    </div>
-                </div>
-                <div class="hero__desktop">
-                    <p class="hero__eyebrow">Official Home of TEAM HQ</p>
-                    <h1>WELCOME TO<br><span>A TEAM SERIES</span></h1>
-                    <p class="hero__lead">Where teamwork, bravery, and truth always rise.</p>
-                    <div class="hero__actions">
-                        <a href="#series" class="btn btn--green">Explore the Series</a>
-                        <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn--outline" target="_blank" rel="noopener">Buy on Lulu</a>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__scroll">Scroll to discover</div>
-        </section>
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="TEAM HQ Home">
+        <span class="logo-text">
+          <span class="t">T</span><span class="e">E</span><span class="a">A</span><span class="m">M</span>
+        </span>
+        <span class="logo-hq">HQ</span>
+        <span class="logo-glass" aria-hidden="true"></span>
+      </a>
 
-        <!-- WHY READING MATTERS -->
-        <section class="section why" id="why-read">
-            <div class="container">
-                <div class="section-head center reveal">
-                    <span class="label">SCIENCE + STORY</span>
-                    <h2>Reading Rewires the Mind</h2>
-                    <p>Every page you turn is exercise for the brain. Research continues to show that regular reading strengthens memory, empathy, focus, and long-term cognitive health.</p>
-                </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-                <div class="why__grid">
-                    <article class="why-card reveal">
-                        <div class="why-card__num">01</div>
-                        <h3>Stronger Memory & Focus</h3>
-                        <p>In controlled studies, older adults who spent eight weeks reading novels showed greater gains in working memory and episodic memory than those who did verbal puzzles.</p>
-                    </article>
-                    <article class="why-card reveal">
-                        <div class="why-card__num">02</div>
-                        <h3>Empathy & Understanding</h3>
-                        <p>Fiction reading is linked to improved theory of mind — the ability to understand other people’s thoughts and feelings. Meta-analyses show consistent small-to-moderate benefits.</p>
-                    </article>
-                    <article class="why-card reveal">
-                        <div class="why-card__num">03</div>
-                        <h3>Protection as We Age</h3>
-                        <p>Lifelong cognitive engagement (including reading) has been associated with lower risk of Alzheimer’s disease and delayed onset of cognitive decline in large longitudinal studies.</p>
-                    </article>
-                    <article class="why-card reveal">
-                        <div class="why-card__num">04</div>
-                        <h3>Stress Reduction</h3>
-                        <p>Recreational reading has been shown to reduce psychological distress. Many readers describe entering a calm, focused state similar to meditation.</p>
-                    </article>
-                </div>
-
-                <blockquote class="quote reveal">
-                    <p>“Reading isn’t just a pleasurable experience — it’s linked to important developmental factors, improving cognition, mental health, and even brain structure.”</p>
-                    <cite>— Research on early reading for pleasure & adolescent brain development</cite>
-                </blockquote>
-
-                <div class="why__cta reveal">
-                    <a href="#books" class="btn btn--green">Start with a TEAM story</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURED BOOK -->
-        <section class="section" id="books">
-            <div class="container">
-                <div class="section-head reveal">
-                    <div>
-                        <span class="label">LATEST RELEASE</span>
-                        <h2>Featured Book</h2>
-                    </div>
-                    <a href="#library" class="text-link">View full library →</a>
-                </div>
-                <div id="featuredBookContainer" class="reveal"></div>
-            </div>
-        </section>
-
-        <!-- SERIES -->
-        <section class="section section--alt" id="series">
-            <div class="container">
-                <div class="section-head center reveal">
-                    <span class="label">THE COLLECTION</span>
-                    <h2>Explore the Series</h2>
-                    <p>Two series. One expanding universe of mystery, danger, and family.</p>
-                </div>
-                <div class="series-grid" id="seriesGrid"></div>
-            </div>
-        </section>
-
-        <!-- FULL LIBRARY -->
-        <section class="section" id="library">
-            <div class="container">
-                <div class="section-head reveal">
-                    <div>
-                        <span class="label">THE ARCHIVE</span>
-                        <h2>Complete Library</h2>
-                    </div>
-                </div>
-                <div class="books-grid" id="allBooksGrid"></div>
-                <div class="library-cta reveal">
-                    <p>Ready to begin the mission?</p>
-                    <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn--blue" target="_blank" rel="noopener">Buy on Lulu →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAMILY TREE -->
-        <section class="section section--alt" id="family-tree">
-            <div class="container">
-                <details class="tree">
-                    <summary class="tree__summary">
-                        <span class="label">THE LINEAGE</span>
-                        <h2>TEAM Family Tree</h2>
-                        <p class="tree__hint">Tap to expand generations</p>
-                    </summary>
-                    <div class="tree__body">
-                        <div class="vt-tree">
-                            <div class="vt-person couple">
-                                <span>Christopher Evans</span>
-                                <span class="union">∞</span>
-                                <span>Clara Evans</span>
-                            </div>
-                            <details class="vt-branch">
-                                <summary class="vt-node">Henry Evans <span class="vt-spouse">∞ Beth Brown</span></summary>
-                                <div class="vt-children">
-                                    <details class="vt-branch">
-                                        <summary class="vt-node">Nathan Evans <span class="vt-spouse">∞ Kate Miller</span></summary>
-                                        <div class="vt-children">
-                                            <details class="vt-branch">
-                                                <summary class="vt-node">Arthur Evans <span class="vt-spouse">∞ Alicia Johnson</span></summary>
-                                                <div class="vt-children">
-                                                    <details class="vt-branch">
-                                                        <summary class="vt-node">Xander Evans <span class="vt-spouse">∞ Lena Clark</span></summary>
-                                                        <div class="vt-children">
-                                                            <details class="vt-branch">
-                                                                <summary class="vt-node">Xander Evans Jr. <span class="vt-spouse">∞ Mara Davis</span></summary>
-                                                                <div class="vt-children">
-                                                                    <details class="vt-branch">
-                                                                        <summary class="vt-node">Raven Evans <span class="vt-spouse">∞ Calix (Clutch) Evans</span></summary>
-                                                                        <div class="vt-children">
-                                                                            <div class="vt-person">Scarlet Evans</div>
-                                                                        </div>
-                                                                    </details>
-                                                                </div>
-                                                            </details>
-                                                        </div>
-                                                    </details>
-                                                    <div class="vt-person">James Evans</div>
-                                                    <div class="vt-person">John Evans</div>
-                                                    <div class="vt-person">Andrew Evans</div>
-                                                    <div class="vt-person">Phillip Evans</div>
-                                                    <div class="vt-person">Thomas Evans</div>
-                                                    <details class="vt-branch">
-                                                        <summary class="vt-node">Ava Evans <span class="vt-spouse">∞ Daniel Allen</span></summary>
-                                                        <div class="vt-children">
-                                                            <details class="vt-branch">
-                                                                <summary class="vt-node">Fyra Allen <span class="vt-spouse">∞ Grant Thatcher</span></summary>
-                                                                <div class="vt-children">
-                                                                    <details class="vt-branch">
-                                                                        <summary class="vt-node">Rate Thatcher <span class="vt-spouse">∞ Rachel Brook</span></summary>
-                                                                        <div class="vt-children">
-                                                                            <details class="vt-branch">
-                                                                                <summary class="vt-node">Taro Thatcher <span class="tag">Adopted</span> <span class="vt-spouse">∞ Diana Diez</span></summary>
-                                                                                <div class="vt-children">
-                                                                                    <div class="vt-person">Lucas Thatcher</div>
-                                                                                    <div class="future-node">
-                                                                                        <div class="vt-person spouse highlight">Ace Shard</div>
-                                                                                        <div class="vt-person highlight">Case Thatcher</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </details>
-                                                                            <div class="vt-person">Eliza Thatcher</div>
-                                                                        </div>
-                                                                    </details>
-                                                                    <details class="vt-branch">
-                                                                        <summary class="vt-node">Traya Thatcher <span class="vt-spouse">∞ Rook Jade</span></summary>
-                                                                        <div class="vt-children">
-                                                                            <div class="vt-person highlight">Arrow Jade</div>
-                                                                            <div class="vt-person">Jax Jade</div>
-                                                                            <div class="vt-person">Oray Jade <span class="tag">Adopted</span></div>
-                                                                        </div>
-                                                                    </details>
-                                                                </div>
-                                                            </details>
-                                                        </div>
-                                                    </details>
-                                                </div>
-                                            </details>
-                                            <div class="vt-person">Silvia Evans</div>
-                                            <div class="vt-person">Jill Evans</div>
-                                        </div>
-                                    </details>
-                                    <div class="vt-person">Mary Evans</div>
-                                    <div class="vt-person">Anne Evans</div>
-                                    <div class="vt-person">Will Evans</div>
-                                </div>
-                            </details>
-                            <details class="vt-branch">
-                                <summary class="vt-node">Other children of Christopher & Clara</summary>
-                                <div class="vt-children">
-                                    <div class="vt-person">Abby Evans</div>
-                                    <div class="vt-person">Cal Evans</div>
-                                    <div class="vt-person">Ruth Evans</div>
-                                    <div class="vt-person">Lily Evans</div>
-                                    <div class="vt-person">Ben Evans</div>
-                                    <div class="vt-person">Tom Evans</div>
-                                    <div class="vt-person">Ellie Evans</div>
-                                    <div class="vt-person">Sam Evans</div>
-                                    <div class="vt-person">Rose Evans</div>
-                                    <div class="vt-person">Joe Evans</div>
-                                </div>
-                            </details>
-                        </div>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section class="section" id="about">
-            <div class="container">
-                <div class="about reveal">
-                    <div class="about__badge">SKY</div>
-                    <div>
-                        <span class="label">THE AUTHOR</span>
-                        <h2>Skyler Hensley</h2>
-                        <p>Skyler Hensley is the author behind TEAM HQ. With a growing collection of stories and approximately fifteen books already written, Skyler is building a world of mystery, adventure, danger, and imagination one story at a time.</p>
-                        <p>TEAM HQ is the publishing headquarters for those stories — beginning with the Arrow Jade Series followed by the highly anticipated Ace Shard Series and more adventures to come.</p>
-                        <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn--green" target="_blank" rel="noopener">Find the books on Lulu</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer__inner">
-            <div class="footer__brand">
-                <img src="LOGO.PNG" alt="TEAM HQ" class="footer__logo">
-                <div>
-                    <strong>TEAM HQ</strong>
-                    <span>Talented Experts Analyzing Mysteries</span>
-                </div>
-            </div>
-            <p class="footer__copy">© <span id="currentYear"></span> TEAM HQ · Skyler Hensley</p>
-        </div>
-    </footer>
-
-    <div class="modal" id="bookModal" aria-hidden="true">
-        <div class="modal__backdrop" data-close-modal></div>
-        <div class="modal__box">
-            <button class="modal__close" data-close-modal aria-label="Close">×</button>
-            <div id="bookModalContent"></div>
-        </div>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#series">Series</a></li>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#mission">The Mission</a></li>
+          <li><a href="#contact" class="btn-nav">Join the Mission</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <script src="script.js"></script>
+  <main>
+    <!-- ========== HERO ========== -->
+    <section id="home" class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">TEAM HQ presents</p>
+          <h1>
+            <span class="line1">ACTION. ADVENTURE.</span>
+            <span class="line2">FAMILY. <em>MYSTERY.</em></span>
+          </h1>
+          <p class="hero-tagline">
+            Thrilling stories. Strong family.<br />
+            One mission: Uncover the truth and protect what matters.
+          </p>
+          <div class="hero-actions">
+            <a href="#books" class="btn btn-primary">Explore the Books</a>
+            <a href="#series" class="btn btn-outline">Discover the Series</a>
+          </div>
+          <div class="hero-icons">
+            <span title="Search for clues"><svg viewBox="0 0 24 24" width="28" height="28"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg></span>
+            <span title="Follow the trail"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 4c0 2-2 3-2 5s2 3 2 5-2 3-2 5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 4c0 2-2 3-2 5s2 3 2 5-2 3-2 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+            <span title="Unlock the secrets"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="logo-big">
+            <span class="t">T</span><span class="e">E</span><span class="a">A</span><span class="m">M</span>
+            <div class="hq-badge">HQ</div>
+          </div>
+          <p class="acronym">Talented Experts Analyzing Mysteries</p>
+        </div>
+      </div>
+      <div class="scroll-hint">Scroll to begin the mission</div>
+    </section>
+
+    <!-- ========== SERIES ========== -->
+    <section id="series" class="section series-section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Discover the</p>
+          <h2>A TEAM SERIES</h2>
+          <p class="section-desc">Where teamwork, bravery, and truth always rise.</p>
+        </header>
+
+        <div class="series-grid" id="seriesGrid">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BOOKS ========== -->
+    <section id="books" class="section books-section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">The Collection</p>
+          <h2>Books</h2>
+          <p class="section-desc">3 books. 1 series. Countless secrets. More missions coming soon.</p>
+        </header>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="danger">Danger Series</button>
+          <button class="filter-btn" data-filter="ace">Ace Shard</button>
+          <button class="filter-btn" data-filter="available">Available Now</button>
+          <button class="filter-btn" data-filter="coming">Coming Soon</button>
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT / AUTHOR ========== -->
+    <section id="about" class="section about-section">
+      <div class="container about-grid">
+        <div class="about-text">
+          <p class="eyebrow">Behind the Mission</p>
+          <h2>About TEAM HQ</h2>
+          <p>
+            TEAM HQ is the publishing home of the A TEAM Series.  
+            <strong>TEAM</strong> stands for <em>Talented Experts Analyzing Mysteries</em>.
+          </p>
+          <p>
+            These stories celebrate family, courage, and the thrill of uncovering the truth.  
+            Written for readers who love action, adventure, and mysteries that keep you guessing — with strong family dynamics at the heart of every mission.
+          </p>
+          <ul class="feature-list">
+            <li><span class="icon">📖</span> Exciting book series</li>
+            <li><span class="icon">👨‍👩‍👧‍👦</span> Strong family dynamic</li>
+            <li><span class="icon">🔍</span> Mysteries that keep you guessing</li>
+            <li><span class="icon">🔐</span> Secrets, twists &amp; turns</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <div class="card-inner">
+            <h3>Author</h3>
+            <p class="author-name">Ava Evans</p>
+            <p>Creator of the A TEAM Series and the thrilling Danger Series featuring Arrow Jade and her team.</p>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== THE MISSION ========== -->
+    <section id="mission" class="section mission-section">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Your Role</p>
+          <h2>Join the Mission</h2>
+          <p class="section-desc">Every reader becomes part of the team.</p>
+        </header>
+
+        <div class="mission-cards">
+          <article class="mission-card">
+            <div class="mission-num">01</div>
+            <h3>Read</h3>
+            <p>Dive into the Danger Series and follow Arrow Jade as the truth unfolds.</p>
+          </article>
+          <article class="mission-card">
+            <div class="mission-num">02</div>
+            <h3>Discover</h3>
+            <p>Uncover secrets, spot the clues, and race to solve the mystery first.</p>
+          </article>
+          <article class="mission-card">
+            <div class="mission-num">03</div>
+            <h3>Protect</h3>
+            <p>Stand with family. Protect what matters. Become part of TEAM HQ.</p>
+          </article>
+        </div>
+
+        <div class="cta-banner">
+          <h3>Visit ateamseries.com and join the mission today!</h3>
+          <a href="#contact" class="btn btn-primary">Start Your Mission</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT / NEWSLETTER ========== -->
+    <section id="contact" class="section contact-section">
+      <div class="container contact-inner">
+        <div class="contact-text">
+          <p class="eyebrow">Stay in the Loop</p>
+          <h2>Exclusive Updates</h2>
+          <p>Be the first to know when new missions drop, get behind-the-scenes secrets, and exclusive content from TEAM HQ.</p>
+        </div>
+        <form class="contact-form" id="missionForm">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your codename (name)" required />
+            <input type="email" name="email" placeholder="Secure channel (email)" required />
+          </div>
+          <textarea name="message" rows="3" placeholder="Optional message to HQ..."></textarea>
+          <button type="submit" class="btn btn-primary">Join the Mission</button>
+          <p class="form-note" id="formNote"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo-text small">
+          <span class="t">T</span><span class="e">E</span><span class="a">A</span><span class="m">M</span>
+          <span class="logo-hq">HQ</span>
+        </div>
+        <p>Talented Experts Analyzing Mysteries</p>
+        <p class="domain">ateamseries.com</p>
+      </div>
+      <div class="footer-links">
+        <a href="#books">Books</a>
+        <a href="#series">Series</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; <span id="year"></span> TEAM HQ / A TEAM Series. All rights reserved.</p>
+        <p class="tagline-small">Action. Adventure. Family. Mystery.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== BOOK MODAL ========== -->
+  <div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-content">
+      <button class="modal-close" data-close aria-label="Close">&times;</button>
+      <div class="modal-body" id="modalBody">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
