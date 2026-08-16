@@ -1,22 +1,9 @@
 /* ============================================================
    A TEAM SERIES / TEAM HQ – script.js
-   Easy to extend: just add objects to the arrays below.
+   Official site: ateamseries.com
+   Easy to extend: add objects to SERIES / BOOKS arrays.
    ============================================================ */
 
-// ----------------------------------------------------------
-//  DATA  –  edit only this section when adding books / series
-// ----------------------------------------------------------
-
-/**
- * SERIES
- * id          – unique key (used for filtering)
- * name        – display name
- * badgeClass  – CSS class for the colored badge (arrowjade | ace | coming)
- * description – short blurb
- * status      – "available" | "coming"
- * bookCount   – number shown in the meta
- * tags        – optional extra labels
- */
 const SERIES = [
   {
     id: "arrowjade",
@@ -40,19 +27,6 @@ const SERIES = [
   },
 ];
 
-/**
- * BOOKS
- * id           – unique key
- * title        – full title
- * seriesId     – must match a SERIES.id
- * seriesOrder  – 1, 2, 3… (shown as “Book X in the Arrow Jade series”)
- * status       – "available" | "coming"
- * isNew        – true → shows “NEW RELEASE!” badge
- * cover        – image path (relative to index.html). Place FWD.JPG, PWD.png, RWD.png in the SAME folder as index.html
- * blurb        – short description for cards & modal
- * longBlurb    – optional longer text for the modal
- * author       – Skyler Hensley
- */
 const BOOKS = [
   {
     id: "fwd",
@@ -63,10 +37,11 @@ const BOOKS = [
     isNew: true,
     cover: "FWD.JPG",
     blurb:
-      "When a mission goes wrong, everything changes. Now the truth is the only way out. The chase begins.",
+      "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing.",
     longBlurb:
-      "Book 1 in the Arrow Jade series. Arrow Jade and her team are thrust into a high-stakes mystery when a mission spirals out of control. Framed, hunted, and racing against time, they must uncover the truth before it’s too late. Loyalty is tested. Courage is required. The chase has begun.",
+      "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing. How can I say 'amazing,' especially given all the danger we went through? Because something I’ve learned from the two years I’ve written about is: Life has its own way of turning out. It can be horrible, amazing, and it can completely change in an instant of time. For us, that change happened in the blink of a light. You’ll understand what I mean later. For now, though… I just hope you enjoy the story.\n— Arrow Jade",
     author: "Skyler Hensley",
+    buyUrl: "https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00",
   },
   {
     id: "pwd",
@@ -77,10 +52,11 @@ const BOOKS = [
     isNew: false,
     cover: "PWD.png",
     blurb:
-      "The secrets dig deeper. The danger is programmed. Arrow Jade and the team face their most complex mission yet.",
+      "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it… there are two ways to find things out, the easy way or the hard way.",
     longBlurb:
-      "Book 2 in the Arrow Jade series. The team discovers that the threat is more calculated than anyone imagined. Technology, deception, and shifting alliances collide as Arrow Jade races to stay one step ahead. Trust is fragile. The code is lethal.",
+      "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time.\n— Arrow Jade",
     author: "Skyler Hensley",
+    buyUrl: "https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00",
   },
   {
     id: "rwd",
@@ -95,8 +71,12 @@ const BOOKS = [
     longBlurb:
       "Book 3 in the Arrow Jade series — Coming Soon. All the threads converge. All the secrets surface. Arrow Jade and the TEAM must face the truth head-on in the most dangerous mission yet. The endgame has begun.",
     author: "Skyler Hensley",
+    buyUrl: "https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00",
   },
 ];
+
+const BUY_ALL_URL =
+  "https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00";
 
 // ----------------------------------------------------------
 //  RENDER HELPERS
@@ -111,7 +91,7 @@ function createCoverFallback(book) {
   const last = words.pop();
   const first = words.join(" ");
   return `
-    <div class="cover-fallback">
+    <div class="cover-fallback" style="display:none;">
       <span class="series-label">${getSeriesById(book.seriesId)?.name || ""} · Book ${book.seriesOrder}</span>
       <div class="title">
         <span class="word1">${first}</span><br>
@@ -126,11 +106,11 @@ function renderSeries() {
   const grid = document.getElementById("seriesGrid");
   if (!grid) return;
 
-  grid.innerHTML = SERIES.map((s) => {
+  grid.innerHTML = SERIES.map((s, i) => {
     const statusLabel = s.status === "coming" ? "Coming Soon" : "Available Now";
     const badgeClass = s.status === "coming" ? "coming" : s.badgeClass;
     return `
-      <article class="series-card" data-series="${s.id}">
+      <article class="series-card animate-in" style="--delay:${i * 0.1}s" data-series="${s.id}">
         <span class="series-badge ${badgeClass}">${statusLabel}</span>
         <h3>${s.name}</h3>
         <p>${s.description}</p>
@@ -155,12 +135,12 @@ function renderBooks(filter = "all") {
   });
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);">No books match this filter yet. New missions are on the way!</p>`;
+    grid.innerHTML = `<p class="empty-msg">No books match this filter yet. New missions are on the way!</p>`;
     return;
   }
 
   grid.innerHTML = filtered
-    .map((book) => {
+    .map((book, i) => {
       const series = getSeriesById(book.seriesId);
       const statusBadge = book.isNew
         ? `<span class="book-status new">New Release!</span>`
@@ -168,15 +148,19 @@ function renderBooks(filter = "all") {
         ? `<span class="book-status coming">Coming Soon</span>`
         : "";
 
-      // Cover image – must be in same folder as index.html (FWD.JPG, PWD.png, RWD.png)
       const coverContent = `
         <img src="${book.cover}" alt="Cover of ${book.title}" loading="lazy"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+             onerror="this.style.display='none'; var fb=this.nextElementSibling; if(fb){fb.style.display='flex';}">
         ${createCoverFallback(book)}
       `;
 
+      const buyBtn =
+        book.status === "available"
+          ? `<a href="${book.buyUrl || BUY_ALL_URL}" class="btn btn-buy" target="_blank" rel="noopener" onclick="event.stopPropagation()">Buy Now</a>`
+          : `<span class="btn btn-disabled">Coming Soon</span>`;
+
       return `
-        <article class="book-card" data-id="${book.id}" data-series="${book.seriesId}" data-status="${book.status}" tabindex="0" role="button" aria-label="View details for ${book.title}">
+        <article class="book-card animate-in" style="--delay:${i * 0.08}s" data-id="${book.id}" data-series="${book.seriesId}" data-status="${book.status}" tabindex="0" role="button" aria-label="View details for ${book.title}">
           <div class="book-cover">
             ${statusBadge}
             ${coverContent}
@@ -185,7 +169,10 @@ function renderBooks(filter = "all") {
             <span class="series-tag">${series ? series.name : ""} · Book ${book.seriesOrder}</span>
             <h3>${book.title}</h3>
             <p class="blurb">${book.blurb}</p>
-            <span class="order">Book ${book.seriesOrder} of the ${series ? series.name : "series"}</span>
+            <div class="book-actions">
+              ${buyBtn}
+              <button type="button" class="btn btn-outline-sm details-btn">Details</button>
+            </div>
           </div>
         </article>
       `;
@@ -193,11 +180,15 @@ function renderBooks(filter = "all") {
     .join("");
 
   grid.querySelectorAll(".book-card").forEach((card) => {
-    card.addEventListener("click", () => openBookModal(card.dataset.id));
+    const open = () => openBookModal(card.dataset.id);
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a.btn-buy")) return;
+      open();
+    });
     card.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openBookModal(card.dataset.id);
+        open();
       }
     });
   });
@@ -218,23 +209,33 @@ function openBookModal(bookId) {
   const coverHtml = `
     <div class="modal-cover">
       <img src="${book.cover}" alt="Cover of ${book.title}"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+           onerror="this.style.display='none'; var fb=this.nextElementSibling; if(fb){fb.style.display='flex';}">
       ${createCoverFallback(book)}
     </div>
   `;
+
+  const buyBlock =
+    book.status === "available"
+      ? `<a href="${book.buyUrl || BUY_ALL_URL}" class="btn btn-primary" target="_blank" rel="noopener">Buy on Lulu</a>`
+      : `<span class="btn btn-disabled">Coming Soon</span>`;
+
+  const longText = (book.longBlurb || book.blurb).replace(/\n/g, "<br>");
 
   body.innerHTML = `
     ${coverHtml}
     <div class="modal-info">
       <p class="series-line">${series ? series.name : ""} · Book ${book.seriesOrder}</p>
       <h2 id="modalTitle">${book.title}</h2>
-      <p class="blurb">${book.longBlurb || book.blurb}</p>
+      <p class="blurb">${longText}</p>
       <div class="modal-meta">
         <span>${book.author || "Skyler Hensley"}</span>
         <span>${book.status === "coming" ? "Coming Soon" : "Available Now"}</span>
         ${book.isNew ? "<span>New Release</span>" : ""}
       </div>
-      <a href="#contact" class="btn btn-primary" data-close>Join the Mission</a>
+      <div class="modal-actions">
+        ${buyBlock}
+        <a href="#contact" class="btn btn-outline" data-close>Join the Mission</a>
+      </div>
     </div>
   `;
 
@@ -290,7 +291,7 @@ function initModal() {
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modal.hidden) closeModal();
+    if (e.key === "Escape" && modal && !modal.hidden) closeModal();
   });
 }
 
@@ -302,10 +303,8 @@ function initForm() {
     e.preventDefault();
     const data = new FormData(form);
     const name = data.get("name") || "Agent";
-
     note.textContent = `Welcome to the team, ${name}! HQ has received your transmission. Stay sharp.`;
     form.reset();
-
     setTimeout(() => {
       note.textContent = "";
     }, 6000);
@@ -322,14 +321,28 @@ function initHeaderScroll() {
   window.addEventListener(
     "scroll",
     () => {
-      if (window.scrollY > 40) {
-        header.style.background = "rgba(10, 10, 12, 0.95)";
-      } else {
-        header.style.background = "rgba(10, 10, 12, 0.85)";
-      }
+      header.classList.toggle("scrolled", window.scrollY > 40);
     },
     { passive: true }
   );
+}
+
+function initReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  document.querySelectorAll(".animate-in, .section-header, .mission-card, .about-card, .cta-banner, .contact-inner").forEach((el) => {
+    el.classList.add("reveal");
+    observer.observe(el);
+  });
 }
 
 // ----------------------------------------------------------
@@ -345,22 +358,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initForm();
   initYear();
   initHeaderScroll();
+  // slight delay so cards exist before observing
+  requestAnimationFrame(() => initReveal());
 });
-
-/* ============================================================
-   HOW TO ADD A NEW BOOK
-   ----------------------------------------------------------
-   1. Place the cover image in the SAME folder as index.html
-      (example: FWD.JPG, PWD.png, RWD.png).
-   2. Copy an existing object in the BOOKS array and change:
-        - id, title, seriesId, seriesOrder, status, isNew,
-          cover, blurb / longBlurb
-   3. Save. The grid and filters update automatically.
-
-   HOW TO ADD A NEW SERIES
-   ----------------------------------------------------------
-   1. Add an object to the SERIES array (unique id).
-   2. Optionally add a filter button in index.html:
-        <button class="filter-btn" data-filter="your-id">Your Series</button>
-   3. Add books that reference the new seriesId.
-   ============================================================ */
