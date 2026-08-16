@@ -472,7 +472,7 @@ body::before {
   margin-bottom: 1rem;
 }
 
-.series-card .series-badge.danger {
+.series-card .series-badge.arrowjade {
   background: rgba(255, 45, 149, 0.15);
   color: var(--pink);
 }
