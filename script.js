@@ -350,17 +350,24 @@ function billPaid(b,d){
 function markPaid(b,d){
   let key = b.id+"_"+iso(d);
   let i = state.payments.findIndex(p=>p.key===key);
+  let amt = Number(b.amount)||0;
 
   if(i>=0){
+    // Undo paid → put the money back into checking
     state.payments.splice(i,1);
+    state.settings.checking = Number(state.settings.checking||0) + amt;
+    toast("Undid payment · +" + money(amt) + " returned to checking");
   }else{
+    // Mark paid → subtract from checking (leftover stays in Safe to Spend)
     state.payments.push({
       id:uid(),
       key,
       billId:b.id,
       date:iso(d),
-      amount:Number(b.amount)||0
+      amount:amt
     });
+    state.settings.checking = Math.max(0, Number(state.settings.checking||0) - amt);
+    toast("Paid · " + money(amt) + " deducted from checking");
   }
 
   save();
@@ -446,7 +453,7 @@ function renderDashboard(){
   document.getElementById("safeNote").textContent =
     safe < 0
     ? "Shortfall detected — upcoming obligations exceed available funds."
-    : "After upcoming obligations and planned savings.";
+    : "Checking after unpaid bills and planned savings. Paid bills free up this number.";
 
   document.getElementById("safeHero").classList.toggle("warn", safe<0);
 
