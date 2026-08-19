@@ -1,238 +1,5739 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A TEAM Series | TEAM HQ – Action. Adventure. Mystery.</title>
-  <meta name="description" content="Welcome to TEAM HQ, the publishing headquarters of Skyler Hensley — where mysteries, adventures, danger, and imagination come together. Official site of the Arrow Jade Series." />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>Redline — Money Planner</title>
+
+<style>
+:root{
+  --b:#080808;
+  --b2:#101010;
+  --c:#181818;
+  --c2:#222;
+  --w:#fff;
+  --m:#999;
+  --r:#e50914;
+  --rd:#a90710;
+  --g:#35c759;
+  --y:#ffd60a;
+  --border:#303030;
+  --radius:18px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--b);
+  color:var(--w);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body{
+  min-height:100vh;
+  padding-bottom:86px;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  max-width:1450px;
+  margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.top{
+  position:sticky;
+  top:0;
+  z-index:30;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:
+    calc(12px + env(safe-area-inset-top))
+    16px
+    12px;
+
+  background:rgba(8,8,8,.94);
+  backdrop-filter:blur(16px);
+
+  border-bottom:1px solid #1f1f1f;
+}
+
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.logo{
+  width:38px;
+  height:38px;
+
+  border-radius:11px;
+
+  background:var(--r);
+
+  display:grid;
+  place-items:center;
+
+  font-weight:950;
+  font-size:21px;
+}
+
+.brand strong{
+  font-size:18px;
+}
+
+.tag{
+  font-size:10px;
+  color:var(--m);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  padding:20px 15px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+  animation:pageIn .18s ease;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(4px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1{
+  font-size:30px;
+  line-height:1;
+  margin:0 0 6px;
+  letter-spacing:-1.4px;
+}
+
+h2{
+  font-size:17px;
+  margin:0;
+}
+
+.sub{
+  color:var(--m);
+  font-size:13px;
+  margin:0 0 20px;
+}
+
+.section{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:24px 0 11px;
+}
+
+.section span{
+  color:var(--m);
+  font-size:11px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+  background:
+    linear-gradient(
+      145deg,
+      #181818,
+      #111
+    );
+
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+
+  padding:16px;
+
+  box-shadow:0 12px 35px #0006;
+}
+
+.hero{
+  padding:22px;
+
+  border-radius:23px;
+
+  background:
+    radial-gradient(
+      circle at 95% 0,
+      #e509142d,
+      transparent 15rem
+    ),
+    linear-gradient(
+      145deg,
+      #1d1d1d,
+      #0e0e0e
+    );
+
+  border:1px solid #383838;
+}
+
+.hero.warn{
+  border-color:#e5091470;
+}
+
+.eyebrow{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  color:#aaa;
+  font-weight:800;
+}
+
+.heroVal{
+  font-size:43px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-2px;
+  margin:8px 0 5px;
+}
+
+.muted{
+  color:var(--m);
+  font-size:12px;
+}
+
+.metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:11px;
+}
+
+.metric{
+  min-height:112px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.metric label{
+  color:var(--m);
+  font-size:11px;
+  font-weight:700;
+}
+
+.metric strong{
+  font-size:24px;
+  letter-spacing:-1px;
+}
+
+.red{
+  color:#ff4a54;
+}
+
+.green{
+  color:var(--g);
+}
+
+.yellow{
+  color:var(--y);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  min-height:44px;
+
+  border:1px solid var(--border);
+
+  background:var(--c2);
+  color:#fff;
+
+  border-radius:12px;
+
+  padding:0 14px;
+
+  font-weight:800;
+  font-size:12px;
+}
+
+.btn.primary{
+  background:var(--r);
+  border-color:var(--r);
+}
+
+.btn.danger{
+  color:#ff646c;
+  background:#e5091417;
+  border-color:#e5091460;
+}
+
+.btn.full{
+  width:100%;
+}
+
+.row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+/*
+  IMPORTANT FIX:
+  minmax(0,1fr) allows both columns
+  to shrink properly instead of letting
+  a date input force its column wider.
+*/
+
+.grid{
+  display:grid;
+  gap:11px;
+  grid-template-columns:minmax(0,1fr);
+}
+
+.two{
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr);
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+
+  min-width:0;
+}
+
+.field label{
+  font-size:11px;
+  color:#cfcfcf;
+  font-weight:750;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+
+  box-sizing:border-box;
+
+  background:#0b0b0b;
+  color:#fff;
+
+  border:1px solid var(--border);
+  border-radius:11px;
+
+  min-height:45px;
+
+  padding:10px 12px;
+
+  outline:none;
+}
+
+.field input[type="date"]{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow:hidden;
+}
+
+.field textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--r);
+  box-shadow:0 0 0 3px #e5091417;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+/* =========================
+   BILLS
+========================= */
+
+.bill{
+  padding:14px;
+
+  border:1px solid var(--border);
+
+  background:#141414;
+
+  border-radius:15px;
+}
+
+.billtop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.billname{
+  font-weight:850;
+  font-size:14px;
+}
+
+.billmeta{
+  color:var(--m);
+  font-size:10px;
+  margin-top:3px;
+}
+
+.amt{
+  font-size:17px;
+  font-weight:900;
+}
+
+.billbottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+}
+
+.badge{
+  display:inline-flex;
+
+  padding:5px 8px;
+
+  border-radius:99px;
+
+  background:#252525;
+  color:#bbb;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.badge.red{
+  background:#e5091418;
+  color:#ff6870;
+}
+
+.badge.green{
+  background:#35c75918;
+  color:#69df86;
+}
+
+.badge.yellow{
+  background:#ffd60a18;
+  color:#ffe36a;
+}
+
+.mini{
+  min-height:33px;
+  padding:0 9px;
+  border-radius:9px;
+  font-size:10px;
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.empty{
+  text-align:center;
+  padding:32px 15px;
+
+  border:1px dashed #383838;
+
+  border-radius:15px;
+
+  color:var(--m);
+
+  font-size:12px;
+}
+
+.empty b{
+  display:block;
+  color:#fff;
+  margin-bottom:4px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+  height:9px;
+
+  background:#292929;
+
+  border-radius:99px;
+
+  overflow:hidden;
+}
+
+.bar{
+  height:100%;
+
+  background:var(--r);
+
+  border-radius:99px;
+}
+
+/* =========================
+   PAYCHECK
+========================= */
+
+.split{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.payrow{
+  display:flex;
+  justify-content:space-between;
+
+  padding:7px 0;
+
+  border-bottom:1px solid #292929;
+
+  font-size:12px;
+
+  gap:15px;
+}
+
+.payrow:last-child{
+  border:0;
+}
+
+.payrow span{
+  color:#aaa;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modalbg{
+  display:none;
+
+  position:fixed;
+
+  z-index:100;
+
+  inset:0;
+
+  background:#000b;
+
+  backdrop-filter:blur(4px);
+
+  align-items:flex-end;
+}
+
+.modalbg.show{
+  display:flex;
+}
+
+.modal{
+  width:100%;
+
+  max-height:94vh;
+
+  overflow:auto;
+
+  background:#161616;
+
+  border:1px solid #383838;
+
+  border-radius:23px 23px 0 0;
+
+  padding:18px;
+
+  padding-bottom:
+    calc(
+      24px +
+      env(safe-area-inset-bottom)
+    );
+}
+
+.modalhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:15px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+
+  border:1px solid var(--border);
+
+  background:#242424;
+  color:#fff;
+
+  border-radius:10px;
+}
+
+.modalfoot{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
+}
+
+.modalfoot>*{
+  flex:1;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toastbox{
+  position:fixed;
+
+  z-index:200;
+
+  top:75px;
+
+  left:12px;
+  right:12px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:7px;
+
+  pointer-events:none;
+}
+
+.toast{
+  background:#222;
+
+  border:1px solid #444;
+
+  padding:12px 14px;
+
+  border-radius:12px;
+
+  font-size:12px;
+
+  box-shadow:0 10px 30px #0008;
+}
+
+.toast.ok{
+  border-color:#35c75970;
+}
+
+.toast.err{
+  border-color:#e5091470;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  position:fixed;
+
+  z-index:50;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(6,1fr);
+
+  padding:
+    7px 6px
+    calc(
+      7px +
+      env(safe-area-inset-bottom)
+    );
+
+  background:#0b0b0bf5;
+
+  border-top:1px solid #292929;
+
+  backdrop-filter:blur(15px);
+}
+
+.nav button{
+  min-height:55px;
+
+  border:0;
+
+  background:transparent;
+
+  color:#777;
+
+  border-radius:12px;
+
+  font-size:9px;
+
+  font-weight:800;
+}
+
+.nav button.active{
+  background:#1c1c1c;
+  color:#fff;
+}
+
+.nav i{
+  display:block;
+
+  font-style:normal;
+
+  font-size:17px;
+
+  margin-bottom:3px;
+}
+
+.nav button.active i{
+  color:var(--r);
+}
+
+/* =========================
+   REPORTS
+========================= */
+
+.report{
+  background:#fff;
+  color:#111;
+
+  border-radius:16px;
+
+  padding:20px;
+}
+
+.report h3{
+  margin:0 0 4px;
+}
+
+.report small{
+  color:#666;
+}
+
+.reportgrid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:8px;
+
+  margin:15px 0;
+}
+
+.reportbox{
+  border:1px solid #ddd;
+
+  padding:12px;
+
+  border-radius:10px;
+}
+
+.reportbox span{
+  display:block;
+
+  font-size:10px;
+
+  color:#666;
+}
+
+.reportbox b{
+  font-size:19px;
+}
+
+.reporttable{
+  width:100%;
+
+  border-collapse:collapse;
+
+  font-size:11px;
+}
+
+.reporttable th,
+.reporttable td{
+  text-align:left;
+
+  padding:7px;
+
+  border-bottom:1px solid #ddd;
+}
+
+.reporttable th:last-child,
+.reporttable td:last-child{
+  text-align:right;
+}
+
+.reportActions{
+  margin-bottom:10px;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:760px){
+
+  body{
+    padding-bottom:0;
+  }
+
+  .top{
+    padding-left:30px;
+    padding-right:30px;
+  }
+
+  .main{
+    margin-left:205px;
+    padding:32px;
+  }
+
+  .nav{
+    top:86px;
+    left:16px;
+    right:auto;
+    bottom:auto;
+
+    width:175px;
+
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid #292929;
+
+    border-radius:17px;
+
+    padding:8px;
+  }
+
+  .nav button{
+    text-align:left;
+    padding:0 13px;
+  }
+
+  .nav i{
+    display:inline-block;
+
+    width:25px;
+
+    margin:0;
+  }
+
+  .metrics{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+  .grid:not(.one){
+    grid-template-columns:
+      minmax(0,1fr)
+      minmax(0,1fr);
+  }
+
+  .modalbg{
+    align-items:center;
+  }
+
+  .modal{
+    max-width:650px;
+
+    border-radius:22px;
+  }
+
+  .reportgrid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media(max-width:420px){
+
+  .two{
+    grid-template-columns:
+      minmax(0,1fr);
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .field.full{
+    grid-column:1/-1;
+  }
+
+  .heroVal{
+    font-size:37px;
+  }
+
+  .top{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .brand strong{
+    font-size:16px;
+  }
+
+  .tag{
+    font-size:9px;
+  }
+
+  .logo{
+    width:35px;
+    height:35px;
+  }
+
+  .top .btn{
+    padding:0 11px;
+  }
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+
+  body{
+    background:#fff;
+    color:#111;
+    padding:0;
+  }
+
+  .top,
+  .nav,
+  .noPrint,
+  .reportActions{
+    display:none!important;
+  }
+
+  .main{
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .page:not(#page-reports){
+    display:none!important;
+  }
+
+  .page#page-reports{
+    display:block!important;
+  }
+
+  .report{
+    box-shadow:none;
+    border-radius:0;
+    padding:0;
+  }
+
+  .reporttable{
+    font-size:10pt;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="bg-overlay" aria-hidden="true"></div>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#home" class="logo" aria-label="TEAM HQ Home">
-        <span class="logo-text">
-          <span class="t">T</span><span class="e">E</span><span class="a">A</span><span class="m">M</span>
-        </span>
-        <span class="logo-hq">HQ</span>
-        <span class="logo-glass" aria-hidden="true"></span>
-      </a>
+<div class="app">
 
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+<header class="top">
 
-      <nav class="main-nav" id="mainNav">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#series">Series</a></li>
-          <li><a href="#books">Books</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#mission">The Mission</a></li>
-          <li><a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn-nav" target="_blank" rel="noopener">Shop Books</a></li>
-        </ul>
-      </nav>
+  <div class="brand">
+
+    <div class="logo">
+      R
     </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="container hero-content">
-        <div class="hero-text">
-          <p class="eyebrow">Welcome to TEAM HQ</p>
-          <h1>
-            <span class="line1">ACTION. ADVENTURE.</span>
-            <span class="line2">FAMILY. <em>MYSTERY.</em></span>
-          </h1>
-          <p class="hero-tagline">
-            The publishing headquarters of Skyler Hensley — where mysteries, adventures, danger, and imagination come together.
-          </p>
-          <div class="hero-actions">
-            <a href="#books" class="btn btn-primary">Explore the Books</a>
-            <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn-outline" target="_blank" rel="noopener">Buy on Lulu</a>
-          </div>
-          <div class="hero-icons">
-            <span title="Search for clues"><svg viewBox="0 0 24 24" width="28" height="28"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg></span>
-            <span title="Follow the trail"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 4c0 2-2 3-2 5s2 3 2 5-2 3-2 5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 4c0 2-2 3-2 5s2 3 2 5-2 3-2 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
-            <span title="Unlock the secrets"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="logo-big">
-            <span class="t">T</span><span class="e">E</span><span class="a">A</span><span class="m">M</span>
-            <div class="hq-badge">HQ</div>
-          </div>
-          <p class="acronym">Talented Experts Analyzing Mysteries</p>
-        </div>
+    <div>
+
+      <strong>
+        REDLINE
+      </strong>
+
+      <div class="tag">
+        Your money. Your schedule. Your plan.
       </div>
-      <div class="scroll-hint">Scroll to begin the mission</div>
-    </section>
 
-    <!-- SERIES -->
-    <section id="series" class="section series-section">
-      <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">Discover the</p>
-          <h2>A TEAM SERIES</h2>
-          <p class="section-desc">Where teamwork, bravery, and truth always rise.</p>
-        </header>
-        <div class="series-grid" id="seriesGrid"></div>
-      </div>
-    </section>
-
-    <!-- BOOKS -->
-    <section id="books" class="section books-section">
-      <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">The Collection</p>
-          <h2>Books</h2>
-          <p class="section-desc">Clean, kid-friendly action and mystery. Click a cover for details or buy now on Lulu.</p>
-        </header>
-
-        <div class="filter-bar">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="arrowjade">Arrow Jade</button>
-          <button class="filter-btn" data-filter="ace">Ace Shard</button>
-          <button class="filter-btn" data-filter="available">Available Now</button>
-          <button class="filter-btn" data-filter="coming">Coming Soon</button>
-        </div>
-
-        <div class="books-grid" id="booksGrid"></div>
-
-        <div class="shop-cta">
-          <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn-primary" target="_blank" rel="noopener">Shop All Books on Lulu</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section about-section">
-      <div class="container about-grid">
-        <div class="about-text">
-          <p class="eyebrow">Behind the Mission</p>
-          <h2>About TEAM HQ</h2>
-          <p>
-            Welcome to <strong>TEAM HQ</strong>, the publishing headquarters of Skyler Hensley — where mysteries, adventures, danger, and imagination come together.
-          </p>
-          <p>
-            <strong>TEAM</strong> stands for <em>Talented Experts Analyzing Mysteries</em>.  
-            TEAM HQ is the home of the A TEAM Series, beginning with the Arrow Jade Series, followed by the highly anticipated Ace Shard Series and more adventures to come.
-          </p>
-          <ul class="feature-list">
-            <li><span class="icon">📖</span> Exciting book series</li>
-            <li><span class="icon">⚡</span> Action &amp; adventure</li>
-            <li><span class="icon">🔍</span> Mysteries that keep you guessing</li>
-            <li><span class="icon">🔐</span> Secrets, twists &amp; turns</li>
-          </ul>
-        </div>
-        <div class="about-card">
-          <div class="card-inner">
-            <h3>The Author</h3>
-            <p class="author-name">Skyler Hensley</p>
-            <p>Skyler Hensley is the author behind TEAM HQ. With a growing collection of stories and approximately fifteen books already written, Skyler is building a world of mystery, adventure, danger, and imagination one story at a time.</p>
-            <p class="author-age">Writing for over six years · Age 14</p>
-            <a href="#contact" class="btn btn-outline">Get in Touch</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MISSION -->
-    <section id="mission" class="section mission-section">
-      <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">Your Role</p>
-          <h2>Join the Mission</h2>
-          <p class="section-desc">Every reader becomes part of the team.</p>
-        </header>
-
-        <div class="mission-cards">
-          <article class="mission-card">
-            <div class="mission-num">01</div>
-            <h3>Read</h3>
-            <p>Dive into the Arrow Jade series and follow the team as the truth unfolds.</p>
-          </article>
-          <article class="mission-card">
-            <div class="mission-num">02</div>
-            <h3>Discover</h3>
-            <p>Uncover secrets, spot the clues, and race to solve the mystery first.</p>
-          </article>
-          <article class="mission-card">
-            <div class="mission-num">03</div>
-            <h3>Protect</h3>
-            <p>Stand up for what matters. Face the hard truths. Become part of TEAM HQ.</p>
-          </article>
-        </div>
-
-        <div class="cta-banner">
-          <h3>Visit ateamseries.com and join the mission today!</h3>
-          <div class="cta-actions">
-            <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" class="btn btn-primary" target="_blank" rel="noopener">Buy the Books</a>
-            <a href="#contact" class="btn btn-outline">Start Your Mission</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact-section">
-      <div class="container contact-inner">
-        <div class="contact-text">
-          <p class="eyebrow">Stay in the Loop</p>
-          <h2>Exclusive Updates</h2>
-          <p>Be the first to know when new missions drop, get behind-the-scenes secrets, and exclusive content from TEAM HQ.</p>
-        </div>
-        <form class="contact-form" id="missionForm">
-          <div class="form-row">
-            <input type="text" name="name" placeholder="Your codename (name)" required />
-            <input type="email" name="email" placeholder="Secure channel (email)" required />
-          </div>
-          <textarea name="message" rows="3" placeholder="Optional message to HQ..."></textarea>
-          <button type="submit" class="btn btn-primary">Join the Mission</button>
-          <p class="form-note" id="formNote"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <div class="logo-text small">
-          <span class="t">T</span><span class="e">E</span><span class="a">A</span><span class="m">M</span>
-          <span class="logo-hq">HQ</span>
-        </div>
-        <p>Talented Experts Analyzing Mysteries</p>
-        <p class="domain">ateamseries.com</p>
-      </div>
-      <div class="footer-links">
-        <a href="#books">Books</a>
-        <a href="#series">Series</a>
-        <a href="#about">About</a>
-        <a href="https://www.lulu.com/search?sortBy=RELEVANCE&page=1&q=Skyler+Hensley&pageSize=10&adult_audience_rating=00" target="_blank" rel="noopener">Shop</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-copy">
-        <p>&copy; <span id="year"></span> TEAM HQ / A TEAM Series. All rights reserved.</p>
-        <p class="tagline-small">Action. Adventure. Family. Mystery.</p>
-      </div>
     </div>
-  </footer>
 
-  <div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-content">
-      <button class="modal-close" data-close aria-label="Close">&times;</button>
-      <div class="modal-body" id="modalBody"></div>
-    </div>
   </div>
 
-  <script src="script.js"></script>
+  <button
+    class="btn primary"
+    id="quickAdd"
+  >
+    ＋ Bill
+  </button>
+
+</header>
+
+
+<main class="main">
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section
+  class="page active"
+  id="page-dashboard"
+>
+
+<h1>
+  Dashboard
+</h1>
+
+<p
+  class="sub"
+  id="dashSub"
+>
+  Your money at a glance.
+</p>
+
+
+<div
+  class="hero"
+  id="safeHero"
+>
+
+  <div class="eyebrow">
+    Safe to Spend
+  </div>
+
+  <div
+    class="heroVal"
+    id="safeSpend"
+  >
+    $0.00
+  </div>
+
+  <div
+    class="muted"
+    id="safeNote"
+  >
+    Set up your paycheck schedule to begin.
+  </div>
+
+</div>
+
+
+<div
+  id="dashAlert"
+  style="margin-top:10px"
+></div>
+
+
+<div class="metrics">
+
+  <div class="card metric">
+
+    <label>
+      Checking
+    </label>
+
+    <strong id="dChecking">
+      $0
+    </strong>
+
+    <span class="muted">
+      Available balance
+    </span>
+
+  </div>
+
+
+  <div class="card metric">
+
+    <label>
+      Next Paycheck
+    </label>
+
+    <strong id="dPay">
+      $0
+    </strong>
+
+    <span
+      class="muted"
+      id="dPayDate"
+    >
+      Not set
+    </span>
+
+  </div>
+
+
+  <div class="card metric">
+
+    <label>
+      Upcoming Bills
+    </label>
+
+    <strong
+      class="red"
+      id="dBills"
+    >
+      $0
+    </strong>
+
+    <span
+      class="muted"
+      id="dBillCount"
+    >
+      0 bills
+    </span>
+
+  </div>
+
+
+  <div class="card metric">
+
+    <label>
+      Savings
+    </label>
+
+    <strong
+      class="green"
+      id="dSavings"
+    >
+      $0
+    </strong>
+
+    <span
+      class="muted"
+      id="dSavingsGoal"
+    >
+      No goal
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="section">
+
+  <h2>
+    Upcoming Bills
+  </h2>
+
+  <span id="upCount">
+    0
+  </span>
+
+</div>
+
+
+<div
+  class="list"
+  id="dashBills"
+></div>
+
+
+<div class="section">
+
+  <h2>
+    Next Paycheck Plan
+  </h2>
+
+</div>
+
+
+<div id="dashPay"></div>
+
+</section>
+
+
+<!-- =========================
+     BILLS
+========================= -->
+
+<section
+  class="page"
+  id="page-bills"
+>
+
+<h1>
+  Bills
+</h1>
+
+<p class="sub">
+  Track every recurring and one-time obligation.
+</p>
+
+
+<div class="row noPrint">
+
+  <button
+    class="btn primary"
+    id="addBill"
+  >
+    ＋ Add Bill
+  </button>
+
+  <button
+    class="btn"
+    id="exportBills"
+  >
+    Export Bills
+  </button>
+
+  <button
+    class="btn"
+    id="importBills"
+  >
+    Import Bills
+  </button>
+
+  <input
+    hidden
+    type="file"
+    id="billInput"
+    accept=".json,application/json"
+  >
+
+</div>
+
+
+<div class="metrics">
+
+  <div class="card metric">
+
+    <label>
+      Active Bills
+    </label>
+
+    <strong id="bCount">
+      0
+    </strong>
+
+    <span class="muted">
+      Tracked obligations
+    </span>
+
+  </div>
+
+
+  <div class="card metric">
+
+    <label>
+      Monthly Estimate
+    </label>
+
+    <strong
+      class="red"
+      id="bMonthly"
+    >
+      $0
+    </strong>
+
+    <span class="muted">
+      Normalized estimate
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="section">
+
+  <h2>
+    Your Bills
+  </h2>
+
+  <span id="bListCount">
+    0
+  </span>
+
+</div>
+
+
+<div
+  class="list"
+  id="billList"
+></div>
+
+</section>
+
+
+<!-- =========================
+     PAYCHECK
+========================= -->
+
+<section
+  class="page"
+  id="page-paycheck"
+>
+
+<h1>
+  Paycheck
+</h1>
+
+<p class="sub">
+  Tell Redline when you get paid and let it plan the money.
+</p>
+
+
+<div class="card">
+
+<div class="grid two">
+
+  <div class="field">
+
+    <label>
+      Pay Frequency
+    </label>
+
+    <select id="frequency">
+
+      <option value="biweekly">
+        Every 2 weeks
+      </option>
+
+      <option value="weekly">
+        Every week
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Payday
+    </label>
+
+    <select id="payday">
+
+      <option value="Thursday">
+        Thursday
+      </option>
+
+      <option value="Friday">
+        Friday
+      </option>
+
+      <option value="Saturday">
+        Saturday
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Next Payday
+    </label>
+
+    <input
+      type="date"
+      id="nextPay"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Typical Paycheck
+    </label>
+
+    <input
+      type="number"
+      min="0"
+      step=".01"
+      id="payAmount"
+      placeholder="0.00"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Checking Balance
+    </label>
+
+    <input
+      type="number"
+      min="0"
+      step=".01"
+      id="checking"
+      placeholder="0.00"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Savings / Paycheck
+    </label>
+
+    <input
+      type="number"
+      min="0"
+      step=".01"
+      id="savePerPay"
+      placeholder="0.00"
+    >
+
+  </div>
+
+</div>
+
+
+<button
+  class="btn primary full"
+  style="margin-top:12px"
+  id="savePay"
+>
+  Save Pay Schedule
+</button>
+
+</div>
+
+
+<div class="section">
+
+  <h2>
+    Upcoming Paychecks
+  </h2>
+
+  <span>
+    Next 8
+  </span>
+
+</div>
+
+
+<div
+  class="list"
+  id="payList"
+></div>
+
+</section>
+
+
+<!-- =========================
+     SAVINGS
+========================= -->
+
+<section
+  class="page"
+  id="page-savings"
+>
+
+<h1>
+  Savings
+</h1>
+
+<p class="sub">
+  Give every savings goal a destination.
+</p>
+
+
+<div class="card">
+
+<div class="eyebrow">
+  Current Savings
+</div>
+
+
+<div
+  class="heroVal"
+  id="sCurrent"
+>
+  $0
+</div>
+
+
+<div
+  class="muted"
+  id="sTarget"
+>
+  No goal set.
+</div>
+
+
+<div
+  class="progress"
+  style="margin-top:14px"
+>
+
+  <div
+    class="bar"
+    id="sBar"
+    style="width:0"
+  ></div>
+
+</div>
+
+
+<div
+  class="metrics"
+  style="margin-top:10px"
+>
+
+  <div class="card metric">
+
+    <label>
+      Goal
+    </label>
+
+    <strong id="sGoal">
+      $0
+    </strong>
+
+  </div>
+
+
+  <div class="card metric">
+
+    <label>
+      Remaining
+    </label>
+
+    <strong id="sRemain">
+      $0
+    </strong>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+  <h2>
+    Savings Plan
+  </h2>
+
+</div>
+
+
+<div class="card">
+
+<div class="grid two">
+
+  <div class="field">
+
+    <label>
+      Current Savings
+    </label>
+
+    <input
+      type="number"
+      min="0"
+      step=".01"
+      id="savings"
+      placeholder="0.00"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Savings Goal
+    </label>
+
+    <input
+      type="number"
+      min="0"
+      step=".01"
+      id="goal"
+      placeholder="0.00"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Target Date
+    </label>
+
+    <input
+      type="date"
+      id="targetDate"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Contribution / Paycheck
+    </label>
+
+    <input
+      type="number"
+      min="0"
+      step=".01"
+      id="contribution"
+      placeholder="0.00"
+    >
+
+  </div>
+
+</div>
+
+
+<button
+  class="btn primary full"
+  style="margin-top:12px"
+  id="saveSavings"
+>
+  Save Savings Plan
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     REPORTS
+========================= -->
+
+<section
+  class="page"
+  id="page-reports"
+>
+
+<h1>
+  Reports
+</h1>
+
+<p class="sub">
+  Print or save a clean expense report for any period.
+</p>
+
+
+<div class="card noPrint">
+
+<div class="grid two">
+
+  <div class="field">
+
+    <label>
+      Report Type
+    </label>
+
+    <select id="reportType">
+
+      <option value="monthly">
+        Monthly
+      </option>
+
+      <option value="weekly">
+        Weekly
+      </option>
+
+      <option value="custom">
+        Custom Range
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Month / Start Date
+    </label>
+
+    <input
+      type="date"
+      id="reportStart"
+    >
+
+  </div>
+
+
+  <div
+    class="field"
+    id="reportEndWrap"
+    style="display:none"
+  >
+
+    <label>
+      End Date
+    </label>
+
+    <input
+      type="date"
+      id="reportEnd"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Include Paid History
+    </label>
+
+    <select id="reportHistory">
+
+      <option value="yes">
+        Yes
+      </option>
+
+      <option value="no">
+        Planned bills only
+      </option>
+
+    </select>
+
+  </div>
+
+</div>
+
+
+<div
+  class="row"
+  style="margin-top:12px"
+>
+
+  <button
+    class="btn primary"
+    id="generateReport"
+  >
+    Generate Report
+  </button>
+
+  <button
+    class="btn"
+    id="printReport"
+  >
+    Print / Save PDF
+  </button>
+
+</div>
+
+</div>
+
+
+<div class="section noPrint">
+
+  <h2>
+    Report Preview
+  </h2>
+
+</div>
+
+
+<div id="reportPreview"></div>
+
+</section>
+
+
+<!-- =========================
+     SETTINGS
+========================= -->
+
+<section
+  class="page"
+  id="page-settings"
+>
+
+<h1>
+  Settings
+</h1>
+
+<p class="sub">
+  Protect, move, and manage your Redline data.
+</p>
+
+
+<div class="section">
+
+  <h2>
+    Backup & Restore
+  </h2>
+
+</div>
+
+
+<div class="card">
+
+<p
+  class="muted"
+  style="margin:0 0 14px"
+>
+  Redline automatically saves in this browser.
+  Backups let you move your budget to another
+  device or keep a safe copy.
+</p>
+
+
+<div class="row">
+
+  <button
+    class="btn primary"
+    id="exportAll"
+  >
+    Export Full Backup
+  </button>
+
+  <button
+    class="btn"
+    id="importAll"
+  >
+    Import Full Backup
+  </button>
+
+  <input
+    hidden
+    type="file"
+    id="allInput"
+    accept=".json,application/json"
+  >
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+  <h2>
+    Danger Zone
+  </h2>
+
+</div>
+
+
+<div class="card">
+
+<button
+  class="btn danger full"
+  id="clearData"
+>
+  Erase All Redline Data
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="nav">
+
+<button
+  class="active"
+  data-page="dashboard"
+>
+  <i>⌂</i>
+  Home
+</button>
+
+<button data-page="bills">
+  <i>▤</i>
+  Bills
+</button>
+
+<button data-page="paycheck">
+  <i>$</i>
+  Paycheck
+</button>
+
+<button data-page="savings">
+  <i>◇</i>
+  Savings
+</button>
+
+<button data-page="reports">
+  <i>▥</i>
+  Reports
+</button>
+
+<button data-page="settings">
+  <i>⚙</i>
+  Settings
+</button>
+
+</nav>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+  class="modalbg"
+  id="modalBg"
+>
+
+<div
+  class="modal"
+  id="modal"
+></div>
+
+</div>
+
+
+<!-- =========================
+     TOASTS
+========================= -->
+
+<div
+  class="toastbox"
+  id="toastbox"
+></div>
+
+
+<script>
+
+/* =========================================================
+   REDLINE
+   Personal Bill + Paycheck Planner
+========================================================= */
+
+const KEY =
+  "redline_budget_v2";
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+const money = n =>
+  new Intl.NumberFormat(
+    "en-US",
+    {
+      style:"currency",
+      currency:"USD"
+    }
+  ).format(
+    Number(n)||0
+  );
+
+
+const esc = s =>
+  String(s ?? "")
+    .replace(
+      /[&<>"']/g,
+      m => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[m])
+    );
+
+
+function iso(d){
+
+  if(!d)
+    return "";
+
+  let x;
+
+  if(
+    typeof d === "string" &&
+    /^\d{4}-\d{2}-\d{2}$/.test(d)
+  ){
+
+    return d;
+
+  }
+
+  x = new Date(d);
+
+  return new Date(
+    x.getTime()
+    -
+    x.getTimezoneOffset()*60000
+  )
+  .toISOString()
+  .slice(0,10);
+
+}
+
+
+const today =
+  () =>
+    iso(
+      new Date()
+    );
+
+
+function parseDate(s){
+
+  if(!s)
+    return null;
+
+  let [
+    y,
+    m,
+    d
+  ] =
+    s
+      .split("-")
+      .map(Number);
+
+  return new Date(
+    y,
+    m-1,
+    d
+  );
+
+}
+
+
+function fmtDate(d){
+
+  if(!d)
+    return "—";
+
+  let x =
+    typeof d === "string"
+    ? parseDate(d)
+    : d;
+
+  return x.toLocaleDateString(
+    "en-US",
+    {
+      month:"short",
+      day:"numeric",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function daysBetween(a,b){
+
+  return Math.round(
+    (
+      parseDate(
+        iso(b)
+      )
+      -
+      parseDate(
+        iso(a)
+      )
+    )
+    /
+    86400000
+  );
+
+}
+
+
+function monthDays(y,m){
+
+  return new Date(
+    y,
+    m+1,
+    0
+  ).getDate();
+
+}
+
+
+function uid(){
+
+  return crypto.randomUUID
+    ? crypto.randomUUID()
+    : Date.now()
+      +
+      "_"
+      +
+      Math.random();
+
+}
+
+
+/* =========================================================
+   DEFAULT STATE
+========================================================= */
+
+let state = {
+
+  schemaVersion:2,
+
+  settings:{
+
+    frequency:"biweekly",
+
+    payday:"Friday",
+
+    nextPay:
+      today(),
+
+    payAmount:0,
+
+    checking:0,
+
+    savePerPay:0
+
+  },
+
+  bills:[],
+
+  savings:{
+
+    current:0,
+
+    goal:0,
+
+    targetDate:"",
+
+    contribution:0
+
+  },
+
+  payments:[]
+
+};
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function load(){
+
+  try{
+
+    let saved =
+      JSON.parse(
+        localStorage.getItem(KEY)
+      );
+
+
+    if(
+      saved &&
+      Array.isArray(
+        saved.bills
+      )
+    ){
+
+      state = {
+
+        ...state,
+
+        ...saved,
+
+        schemaVersion:2,
+
+        settings:{
+          ...state.settings,
+          ...(saved.settings || {})
+        },
+
+        savings:{
+          ...state.savings,
+          ...(saved.savings || {})
+        },
+
+        bills:
+          Array.isArray(
+            saved.bills
+          )
+          ? saved.bills
+          : [],
+
+        payments:
+          Array.isArray(
+            saved.payments
+          )
+          ? saved.payments
+          : []
+
+      };
+
+    }
+
+  }catch(e){
+
+    console.warn(
+      "Redline load error:",
+      e
+    );
+
+  }
+
+}
+
+
+function save(){
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(state)
+  );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(
+  msg,
+  type="ok"
+){
+
+  let d =
+    document.createElement(
+      "div"
+    );
+
+  d.className =
+    "toast "
+    +
+    type;
+
+  d.textContent =
+    msg;
+
+  document
+    .getElementById(
+      "toastbox"
+    )
+    .appendChild(d);
+
+  setTimeout(
+    () => d.remove(),
+    2600
+  );
+
+}
+
+
+/* =========================================================
+   PAYDAY DATE HELPERS
+========================================================= */
+
+const weekdayNumbers = {
+
+  Sunday:0,
+
+  Monday:1,
+
+  Tuesday:2,
+
+  Wednesday:3,
+
+  Thursday:4,
+
+  Friday:5,
+
+  Saturday:6
+
+};
+
+
+function nextMatchingWeekday(
+  date,
+  weekdayName
+){
+
+  let d =
+    parseDate(
+      iso(date)
+    );
+
+  let target =
+    weekdayNumbers[
+      weekdayName
+    ];
+
+  if(
+    target === undefined
+  ){
+
+    return d;
+
+  }
+
+  let current =
+    d.getDay();
+
+  let difference =
+    (
+      target
+      -
+      current
+      +
+      7
+    )
+    %
+    7;
+
+  /*
+    If the date already falls on the
+    chosen payday, keep it.
+  */
+
+  d =
+    new Date(
+      d.getFullYear(),
+      d.getMonth(),
+      d.getDate()
+      +
+      difference
+    );
+
+  return d;
+
+}
+
+
+function adjustNextPayToSelectedDay(){
+
+  let input =
+    document.getElementById(
+      "nextPay"
+    );
+
+  let payday =
+    document.getElementById(
+      "payday"
+    ).value;
+
+  if(!input.value)
+    return;
+
+  let current =
+    parseDate(
+      input.value
+    );
+
+  let adjusted =
+    nextMatchingWeekday(
+      current,
+      payday
+    );
+
+  input.value =
+    iso(adjusted);
+
+}
+
+
+/* =========================================================
+   BILL OCCURRENCES
+========================================================= */
+
+function occurrences(
+  b,
+  start=today(),
+  end=null
+){
+
+  let s =
+    parseDate(start);
+
+  let limit =
+    end
+    ? parseDate(end)
+    : new Date(
+        s.getFullYear()+2,
+        s.getMonth(),
+        s.getDate()
+      );
+
+  let out=[];
+
+
+  if(
+    !b ||
+    b.active === false
+  ){
+
+    return out;
+
+  }
+
+
+  if(
+    b.frequency === "one"
+  ){
+
+    let d =
+      parseDate(
+        b.dueDate
+      );
+
+    if(
+      d >= s &&
+      d <= limit
+    ){
+
+      out.push(d);
+
+    }
+
+    return out;
+
+  }
+
+
+  let cur;
+
+
+  if(
+    b.frequency === "weekly" ||
+    b.frequency === "biweekly"
+  ){
+
+    cur =
+      parseDate(
+        b.startDate ||
+        b.dueDate
+      );
+
+    let step =
+      b.frequency === "weekly"
+      ? 7
+      : 14;
+
+
+    while(
+      cur < s
+    ){
+
+      cur =
+        new Date(
+          cur.getFullYear(),
+          cur.getMonth(),
+          cur.getDate()+step
+        );
+
+    }
+
+
+    while(
+      cur <= limit
+    ){
+
+      out.push(
+        new Date(cur)
+      );
+
+      cur =
+        new Date(
+          cur.getFullYear(),
+          cur.getMonth(),
+          cur.getDate()+step
+        );
+
+    }
+
+  }
+
+
+  else if(
+    b.frequency === "monthly"
+  ){
+
+    let base =
+      parseDate(
+        b.dueDate
+      );
+
+    let y =
+      s.getFullYear();
+
+    let m =
+      s.getMonth();
+
+
+    cur =
+      new Date(
+        y,
+        m,
+        Math.min(
+          base.getDate(),
+          monthDays(y,m)
+        )
+      );
+
+
+    if(cur < s){
+
+      m++;
+
+      if(m > 11){
+
+        m=0;
+        y++;
+
+      }
+
+      cur =
+        new Date(
+          y,
+          m,
+          Math.min(
+            base.getDate(),
+            monthDays(y,m)
+          )
+        );
+
+    }
+
+
+    while(
+      cur <= limit
+    ){
+
+      out.push(
+        new Date(cur)
+      );
+
+      m++;
+
+      if(m > 11){
+
+        m=0;
+        y++;
+
+      }
+
+      cur =
+        new Date(
+          y,
+          m,
+          Math.min(
+            base.getDate(),
+            monthDays(y,m)
+          )
+        );
+
+    }
+
+  }
+
+
+  else if(
+    b.frequency === "quarterly"
+  ){
+
+    let base =
+      parseDate(
+        b.dueDate
+      );
+
+    let cur =
+      new Date(base);
+
+
+    while(
+      cur < s
+    ){
+
+      let nm =
+        cur.getMonth()+3;
+
+      let ny =
+        cur.getFullYear();
+
+      cur =
+        new Date(
+          ny,
+          nm,
+          Math.min(
+            base.getDate(),
+            monthDays(ny,nm)
+          )
+        );
+
+    }
+
+
+    while(
+      cur <= limit
+    ){
+
+      out.push(
+        new Date(cur)
+      );
+
+      let nm =
+        cur.getMonth()+3;
+
+      let ny =
+        cur.getFullYear();
+
+      cur =
+        new Date(
+          ny,
+          nm,
+          Math.min(
+            base.getDate(),
+            monthDays(ny,nm)
+          )
+        );
+
+    }
+
+  }
+
+
+  else if(
+    b.frequency === "yearly"
+  ){
+
+    let base =
+      parseDate(
+        b.dueDate
+      );
+
+    let y =
+      s.getFullYear();
+
+
+    cur =
+      new Date(
+        y,
+        base.getMonth(),
+        Math.min(
+          base.getDate(),
+          monthDays(
+            y,
+            base.getMonth()
+          )
+        )
+      );
+
+
+    if(cur < s){
+
+      y++;
+
+      cur =
+        new Date(
+          y,
+          base.getMonth(),
+          Math.min(
+            base.getDate(),
+            monthDays(
+              y,
+              base.getMonth()
+            )
+          )
+        );
+
+    }
+
+
+    while(
+      cur <= limit
+    ){
+
+      out.push(
+        new Date(cur)
+      );
+
+      y++;
+
+      cur =
+        new Date(
+          y,
+          base.getMonth(),
+          Math.min(
+            base.getDate(),
+            monthDays(
+              y,
+              base.getMonth()
+            )
+          )
+        );
+
+    }
+
+  }
+
+
+  return out;
+
+}
+
+
+function nextOccurrence(
+  b,
+  from=today()
+){
+
+  let d =
+    parseDate(from);
+
+  let end =
+    iso(
+      new Date(
+        d.getFullYear()+1,
+        d.getMonth(),
+        d.getDate()
+      )
+    );
+
+  return (
+    occurrences(
+      b,
+      from,
+      end
+    )[0]
+    ||
+    null
+  );
+
+}
+
+
+function activeBills(){
+
+  return state.bills.filter(
+    b =>
+      b.active !== false
+  );
+
+}
+
+
+function monthlyEstimate(b){
+
+  let a =
+    Number(
+      b.amount
+    ) || 0;
+
+
+  if(
+    b.frequency === "weekly"
+  ){
+
+    return a*52/12;
+
+  }
+
+
+  if(
+    b.frequency === "biweekly"
+  ){
+
+    return a*26/12;
+
+  }
+
+
+  if(
+    b.frequency === "quarterly"
+  ){
+
+    return a/3;
+
+  }
+
+
+  if(
+    b.frequency === "yearly"
+  ){
+
+    return a/12;
+
+  }
+
+
+  return a;
+
+}
+
+
+/* =========================================================
+   UPCOMING BILLS
+========================================================= */
+
+function upcomingBills(
+  days=45
+){
+
+  let end =
+    iso(
+      new Date(
+        parseDate(today())
+          .getTime()
+        +
+        days*86400000
+      )
+    );
+
+  let arr=[];
+
+
+  activeBills()
+    .forEach(
+      b => {
+
+        occurrences(
+          b,
+          today(),
+          end
+        )
+        .forEach(
+          d => {
+
+            arr.push({
+              b,
+              d
+            });
+
+          }
+        );
+
+      }
+    );
+
+
+  return arr.sort(
+    (a,b)=>
+      a.d-b.d
+  );
+
+}
+
+
+/* =========================================================
+   PAYMENTS
+========================================================= */
+
+function billPaid(
+  b,
+  d
+){
+
+  let key =
+    b.id
+    +
+    "_"
+    +
+    iso(d);
+
+  return state.payments.some(
+    p =>
+      p.key === key
+  );
+
+}
+
+
+function markPaid(
+  b,
+  d
+){
+
+  let key =
+    b.id
+    +
+    "_"
+    +
+    iso(d);
+
+
+  let i =
+    state.payments.findIndex(
+      p =>
+        p.key === key
+    );
+
+
+  if(i >= 0){
+
+    state.payments.splice(
+      i,
+      1
+    );
+
+  }else{
+
+    state.payments.push({
+
+      id:uid(),
+
+      key,
+
+      billId:b.id,
+
+      date:iso(d),
+
+      amount:
+        Number(
+          b.amount
+        ) || 0
+
+    });
+
+  }
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =========================================================
+   PAY DATES
+========================================================= */
+
+function payDates(
+  count=8
+){
+
+  /*
+    IMPORTANT FIX:
+    The paycheck schedule ALWAYS starts
+    from state.settings.nextPay.
+
+    It never uses today's date unless
+    no next payday has been configured.
+  */
+
+  let startDate =
+    state.settings.nextPay
+    ||
+    today();
+
+
+  let s =
+    parseDate(
+      startDate
+    );
+
+
+  let step =
+    state.settings.frequency === "weekly"
+    ? 7
+    : 14;
+
+
+  let a=[];
+
+
+  for(
+    let i=0;
+    i<count;
+    i++
+  ){
+
+    a.push(
+      new Date(s)
+    );
+
+
+    s =
+      new Date(
+        s.getFullYear(),
+        s.getMonth(),
+        s.getDate()+step
+      );
+
+  }
+
+
+  return a;
+
+}
+
+
+/* =========================================================
+   PAYCHECK PLAN
+========================================================= */
+
+function paycheckPlan(
+  date
+){
+
+  let start =
+    iso(date);
+
+
+  let next =
+    new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+      +
+      (
+        state.settings.frequency === "weekly"
+        ? 7
+        : 14
+      )
+    );
+
+
+  let end =
+    iso(next);
+
+
+  let items=[];
+
+
+  activeBills()
+    .forEach(
+      b => {
+
+        occurrences(
+          b,
+          start,
+          end
+        )
+        .forEach(
+          d => {
+
+            if(
+              !billPaid(
+                b,
+                d
+              )
+            ){
+
+              items.push({
+                b,
+                d
+              });
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+  let total =
+    items.reduce(
+      (s,x) =>
+        s +
+        Number(
+          x.b.amount || 0
+        ),
+      0
+    );
+
+
+  let saveAmt =
+    Number(
+      state.settings.savePerPay || 0
+    );
+
+
+  let remaining =
+    Number(
+      state.settings.payAmount || 0
+    )
+    -
+    total
+    -
+    saveAmt;
+
+
+  return {
+
+    items,
+
+    total,
+
+    save:saveAmt,
+
+    remaining
+
+  };
+
+}
+
+
+/* =========================================================
+   BILL HTML
+========================================================= */
+
+function billHTML(
+  b,
+  d
+){
+
+  let paid =
+    billPaid(
+      b,
+      d
+    );
+
+
+  let days =
+    daysBetween(
+      today(),
+      d
+    );
+
+
+  let cls =
+    paid
+    ? "green"
+    : days <= 3
+    ? "red"
+    : days <= 7
+    ? "yellow"
+    : "";
+
+
+  let status =
+    paid
+    ? "PAID"
+    : days < 0
+    ? "OVERDUE"
+    : days === 0
+    ? "DUE TODAY"
+    : days+" days";
+
+
+  return `
+
+  <div class="bill">
+
+    <div class="billtop">
+
+      <div>
+
+        <div class="billname">
+          ${esc(b.name)}
+        </div>
+
+        <div class="billmeta">
+          ${esc(
+            b.category || "General"
+          )}
+          ·
+          ${esc(
+            b.frequency
+          )}
+        </div>
+
+      </div>
+
+      <div class="amt">
+        ${money(b.amount)}
+      </div>
+
+    </div>
+
+
+    <div class="billbottom">
+
+      <div>
+
+        <span
+          class="badge ${cls}"
+        >
+          ${status}
+        </span>
+
+        <span class="muted">
+          Due ${fmtDate(d)}
+        </span>
+
+      </div>
+
+
+      <div class="row">
+
+        <button
+          class="btn mini"
+          onclick="
+            editBill('${b.id}')
+          "
+        >
+          Edit
+        </button>
+
+
+        <button
+          class="btn mini ${paid?"danger":""}"
+          onclick="
+            markPaid(
+              state.bills.find(
+                x =>
+                  x.id === '${b.id}'
+              ),
+              parseDate(
+                '${iso(d)}'
+              )
+            )
+          "
+        >
+          ${paid ? "Undo" : "Paid"}
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PAYCHECK HTML
+========================================================= */
+
+function payHTML(
+  d,
+  p
+){
+
+  return `
+
+  <div class="card">
+
+    <div class="split">
+
+      <div>
+
+        <div class="eyebrow">
+          ${fmtDate(d)}
+        </div>
+
+        <div
+          style="
+            font-size:22px;
+            font-weight:900
+          "
+        >
+          ${money(
+            state.settings.payAmount
+          )}
+        </div>
+
+      </div>
+
+
+      <span
+        class="badge ${
+          p.remaining < 0
+          ? "red"
+          : "green"
+        }"
+      >
+        ${
+          p.remaining < 0
+          ? "SHORTFALL"
+          : "ON TRACK"
+        }
+      </span>
+
+    </div>
+
+
+    <div
+      style="margin-top:10px"
+    >
+
+      ${
+        p.items
+          .slice(0,7)
+          .map(
+            x =>
+            `
+
+            <div class="payrow">
+
+              <span>
+                ${esc(x.b.name)}
+                ·
+                ${fmtDate(x.d)}
+              </span>
+
+              <b>
+                ${money(
+                  x.b.amount
+                )}
+              </b>
+
+            </div>
+
+            `
+          )
+          .join("")
+        ||
+        `
+
+        <div
+          class="muted"
+          style="padding:10px 0"
+        >
+          No bills assigned to this pay period.
+        </div>
+
+        `
+      }
+
+    </div>
+
+
+    <div
+      class="payrow"
+      style="margin-top:7px"
+    >
+
+      <span>
+        Bill allocations
+      </span>
+
+      <b>
+        ${money(p.total)}
+      </b>
+
+    </div>
+
+
+    <div class="payrow">
+
+      <span>
+        Savings
+      </span>
+
+      <b>
+        ${money(p.save)}
+      </b>
+
+    </div>
+
+
+    <div class="payrow">
+
+      <span>
+        Remaining
+      </span>
+
+      <b
+        class="${
+          p.remaining < 0
+          ? "red"
+          : "green"
+        }"
+      >
+        ${money(p.remaining)}
+      </b>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+function empty(
+  title,
+  message
+){
+
+  return `
+
+  <div class="empty">
+
+    <b>
+      ${title}
+    </b>
+
+    ${message}
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function renderDashboard(){
+
+  document.getElementById(
+    "dChecking"
+  ).textContent =
+    money(
+      state.settings.checking
+    );
+
+
+  let p =
+    payDates(1)[0];
+
+
+  let plan =
+    paycheckPlan(p);
+
+
+  let up =
+    upcomingBills(45);
+
+
+  document.getElementById(
+    "dPay"
+  ).textContent =
+    money(
+      state.settings.payAmount
+    );
+
+
+  document.getElementById(
+    "dPayDate"
+  ).textContent =
+    p
+    ? fmtDate(p)
+    : "Not set";
+
+
+  document.getElementById(
+    "dBills"
+  ).textContent =
+    money(
+      up.reduce(
+        (s,x) =>
+          s +
+          Number(
+            x.b.amount || 0
+          ),
+        0
+      )
+    );
+
+
+  document.getElementById(
+    "dBillCount"
+  ).textContent =
+    up.length +
+    " upcoming";
+
+
+  document.getElementById(
+    "dSavings"
+  ).textContent =
+    money(
+      state.savings.current
+    );
+
+
+  document.getElementById(
+    "dSavingsGoal"
+  ).textContent =
+    state.savings.goal
+    ? money(
+        state.savings.goal
+      )+" goal"
+    : "No goal";
+
+
+  let safe =
+    Number(
+      state.settings.checking || 0
+    )
+    -
+    up
+      .slice(0,10)
+      .reduce(
+        (s,x) =>
+          s +
+          (
+            billPaid(
+              x.b,
+              x.d
+            )
+            ? 0
+            : Number(
+                x.b.amount || 0
+              )
+          ),
+        0
+      )
+    -
+    Number(
+      state.settings.savePerPay || 0
+    );
+
+
+  document.getElementById(
+    "safeSpend"
+  ).textContent =
+    money(safe);
+
+
+  document.getElementById(
+    "safeNote"
+  ).textContent =
+    safe < 0
+    ? "Shortfall detected — upcoming obligations exceed available funds."
+    : "After upcoming obligations and planned savings.";
+
+
+  document.getElementById(
+    "safeHero"
+  ).classList.toggle(
+    "warn",
+    safe < 0
+  );
+
+
+  document.getElementById(
+    "dashAlert"
+  ).innerHTML =
+    safe < 0
+    ?
+    `
+
+    <div
+      class="card"
+      style="
+        border-color:#e5091460;
+        color:#ff8c91;
+        font-size:12px
+      "
+    >
+
+      <b>
+        ⚠ Funding warning
+      </b>
+
+      <br>
+
+      Review your upcoming bills
+      or increase your available funds.
+
+    </div>
+
+    `
+    :
+    "";
+
+
+  document.getElementById(
+    "upCount"
+  ).textContent =
+    up.length +
+    " next 45 days";
+
+
+  document.getElementById(
+    "dashBills"
+  ).innerHTML =
+    up
+      .slice(0,5)
+      .map(
+        x =>
+          billHTML(
+            x.b,
+            x.d
+          )
+      )
+      .join("")
+    ||
+    empty(
+      "No upcoming bills",
+      "Add your first bill to start planning."
+    );
+
+
+  document.getElementById(
+    "dashPay"
+  ).innerHTML =
+    payHTML(
+      p,
+      plan
+    );
+
+}
+
+
+/* =========================================================
+   BILLS PAGE
+========================================================= */
+
+function renderBills(){
+
+  let bs =
+    activeBills();
+
+
+  document.getElementById(
+    "bCount"
+  ).textContent =
+    bs.length;
+
+
+  document.getElementById(
+    "bListCount"
+  ).textContent =
+    bs.length +
+    " active";
+
+
+  document.getElementById(
+    "bMonthly"
+  ).textContent =
+    money(
+      bs.reduce(
+        (s,b) =>
+          s +
+          monthlyEstimate(b),
+        0
+      )
+    );
+
+
+  let arr=[];
+
+
+  bs.forEach(
+    b => {
+
+      let d =
+        nextOccurrence(b);
+
+
+      if(d){
+
+        arr.push({
+          b,
+          d
+        });
+
+      }
+
+    }
+  );
+
+
+  arr.sort(
+    (a,b)=>
+      a.d-b.d
+  );
+
+
+  document.getElementById(
+    "billList"
+  ).innerHTML =
+    arr
+      .map(
+        x =>
+          billHTML(
+            x.b,
+            x.d
+          )
+      )
+      .join("")
+    ||
+    empty(
+      "No bills yet",
+      "Tap Add Bill to create your first obligation."
+    );
+
+}
+
+
+/* =========================================================
+   PAYCHECK PAGE
+========================================================= */
+
+function renderPay(){
+
+  document.getElementById(
+    "frequency"
+  ).value =
+    state.settings.frequency;
+
+
+  document.getElementById(
+    "payday"
+  ).value =
+    state.settings.payday;
+
+
+  document.getElementById(
+    "nextPay"
+  ).value =
+    state.settings.nextPay
+    ||
+    today();
+
+
+  document.getElementById(
+    "payAmount"
+  ).value =
+    state.settings.payAmount || "";
+
+
+  document.getElementById(
+    "checking"
+  ).value =
+    state.settings.checking || "";
+
+
+  document.getElementById(
+    "savePerPay"
+  ).value =
+    state.settings.savePerPay || "";
+
+
+  document.getElementById(
+    "payList"
+  ).innerHTML =
+    payDates(8)
+      .map(
+        d =>
+          payHTML(
+            d,
+            paycheckPlan(d)
+          )
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   SAVINGS PAGE
+========================================================= */
+
+function renderSavings(){
+
+  let s =
+    Number(
+      state.savings.current || 0
+    );
+
+
+  let g =
+    Number(
+      state.savings.goal || 0
+    );
+
+
+  let pct =
+    g
+    ? Math.min(
+        100,
+        s/g*100
+      )
+    : 0;
+
+
+  document.getElementById(
+    "sCurrent"
+  ).textContent =
+    money(s);
+
+
+  document.getElementById(
+    "sGoal"
+  ).textContent =
+    money(g);
+
+
+  document.getElementById(
+    "sRemain"
+  ).textContent =
+    money(
+      Math.max(
+        0,
+        g-s
+      )
+    );
+
+
+  document.getElementById(
+    "sBar"
+  ).style.width =
+    pct +
+    "%";
+
+
+  document.getElementById(
+    "sTarget"
+  ).textContent =
+    state.savings.targetDate
+    ?
+      "Target: "
+      +
+      fmtDate(
+        state.savings.targetDate
+      )
+    :
+    g
+    ?
+      "Goal: "
+      +
+      money(g)
+    :
+      "No goal set.";
+
+
+  document.getElementById(
+    "savings"
+  ).value =
+    s || "";
+
+
+  document.getElementById(
+    "goal"
+  ).value =
+    g || "";
+
+
+  document.getElementById(
+    "targetDate"
+  ).value =
+    state.savings.targetDate || "";
+
+
+  document.getElementById(
+    "contribution"
+  ).value =
+    state.savings.contribution ||
+    state.settings.savePerPay ||
+    "";
+
+}
+
+
+/* =========================================================
+   REPORTS
+========================================================= */
+
+function renderReports(){
+
+  let start =
+    document.getElementById(
+      "reportStart"
+    );
+
+
+  if(
+    !start.value
+  ){
+
+    let d =
+      new Date();
+
+
+    start.value =
+      iso(
+        new Date(
+          d.getFullYear(),
+          d.getMonth(),
+          1
+        )
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   MAIN RENDER
+========================================================= */
+
+function render(){
+
+  renderDashboard();
+
+  renderBills();
+
+  renderPay();
+
+  renderSavings();
+
+  renderReports();
+
+  save();
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(
+  title,
+  body,
+  onSave
+){
+
+  let bg =
+    document.getElementById(
+      "modalBg"
+    );
+
+
+  let m =
+    document.getElementById(
+      "modal"
+    );
+
+
+  m.innerHTML = `
+
+  <div class="modalhead">
+
+    <h2>
+      ${title}
+    </h2>
+
+    <button
+      class="close"
+      id="closeModal"
+    >
+      ×
+    </button>
+
+  </div>
+
+  ${body}
+
+  <div class="modalfoot">
+
+    <button
+      class="btn"
+      id="cancelModal"
+    >
+      Cancel
+    </button>
+
+    <button
+      class="btn primary"
+      id="modalSave"
+    >
+      Save
+    </button>
+
+  </div>
+
+  `;
+
+
+  bg.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "closeModal"
+  ).onclick =
+    closeModal;
+
+
+  document.getElementById(
+    "cancelModal"
+  ).onclick =
+    closeModal;
+
+
+  document.getElementById(
+    "modalSave"
+  ).onclick =
+    () => {
+
+      if(
+        onSave()
+      ){
+
+        closeModal();
+
+      }
+
+    };
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById(
+      "modalBg"
+    )
+    .classList.remove(
+      "show"
+    );
+
+}
+
+
+/* =========================================================
+   BILL FORM
+========================================================= */
+
+function billForm(
+  b={}
+){
+
+  let d =
+    b.dueDate ||
+    today();
+
+
+  return `
+
+  <div class="grid two">
+
+    <div class="field">
+
+      <label>
+        Bill Name
+      </label>
+
+      <input
+        id="fName"
+        value="${esc(
+          b.name || ""
+        )}"
+        placeholder="Rent, Electric, Phone..."
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Amount
+      </label>
+
+      <input
+        type="number"
+        min="0"
+        step=".01"
+        id="fAmount"
+        value="${b.amount ?? ""}"
+        placeholder="0.00"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Due Date
+      </label>
+
+      <input
+        type="date"
+        id="fDate"
+        value="${d}"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Frequency
+      </label>
+
+      <select id="fFreq">
+
+        <option value="monthly">
+          Monthly
+        </option>
+
+        <option value="weekly">
+          Weekly
+        </option>
+
+        <option value="biweekly">
+          Every 2 Weeks
+        </option>
+
+        <option value="quarterly">
+          Quarterly
+        </option>
+
+        <option value="yearly">
+          Yearly
+        </option>
+
+        <option value="one">
+          One Time
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Category
+      </label>
+
+      <input
+        id="fCat"
+        value="${esc(
+          b.category || ""
+        )}"
+        placeholder="Housing, Utilities..."
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Priority
+      </label>
+
+      <select id="fPriority">
+
+        <option>
+          Normal
+        </option>
+
+        <option>
+          High
+        </option>
+
+        <option>
+          Critical
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        Notes
+      </label>
+
+      <textarea
+        id="fNotes"
+        placeholder="Optional notes..."
+      >${esc(
+        b.notes || ""
+      )}</textarea>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+function showBill(
+  b=null
+){
+
+  openModal(
+
+    b
+    ? "Edit Bill"
+    : "Add Bill",
+
+    billForm(
+      b || {}
+    ),
+
+    () => {
+
+      let name =
+        document.getElementById(
+          "fName"
+        )
+        .value
+        .trim();
+
+
+      let amount =
+        Number(
+          document.getElementById(
+            "fAmount"
+          ).value
+        );
+
+
+      let date =
+        document.getElementById(
+          "fDate"
+        ).value;
+
+
+      if(
+        !name ||
+        !date ||
+        amount < 0 ||
+        Number.isNaN(amount)
+      ){
+
+        toast(
+          "Please enter a bill name, date, and valid amount.",
+          "err"
+        );
+
+        return false;
+
+      }
+
+
+      let obj = {
+
+        id:
+          b?.id ||
+          uid(),
+
+        name,
+
+        amount,
+
+        dueDate:
+          date,
+
+        startDate:
+          date,
+
+        frequency:
+          document.getElementById(
+            "fFreq"
+          ).value,
+
+        category:
+          document.getElementById(
+            "fCat"
+          )
+          .value
+          .trim()
+          ||
+          "General",
+
+        priority:
+          document.getElementById(
+            "fPriority"
+          ).value,
+
+        notes:
+          document.getElementById(
+            "fNotes"
+          )
+          .value
+          .trim(),
+
+        active:true
+
+      };
+
+
+      if(b){
+
+        Object.assign(
+          b,
+          obj
+        );
+
+      }else{
+
+        state.bills.push(
+          obj
+        );
+
+      }
+
+
+      save();
+
+      render();
+
+      toast(
+        b
+        ? "Bill updated"
+        : "Bill added"
+      );
+
+      return true;
+
+    }
+
+  );
+
+
+  if(b){
+
+    document.getElementById(
+      "fFreq"
+    ).value =
+      b.frequency;
+
+
+    document.getElementById(
+      "fPriority"
+    ).value =
+      b.priority ||
+      "Normal";
+
+  }
+
+}
+
+
+function addBill(){
+
+  showBill();
+
+}
+
+
+window.editBill =
+  id =>
+    showBill(
+      state.bills.find(
+        b =>
+          b.id === id
+      )
+    );
+
+
+/* =========================================================
+   REPORT GENERATOR
+========================================================= */
+
+function generateReport(){
+
+  let type =
+    document.getElementById(
+      "reportType"
+    ).value;
+
+
+  let start =
+    document.getElementById(
+      "reportStart"
+    ).value;
+
+
+  let end;
+
+
+  if(
+    type === "monthly"
+  ){
+
+    let d =
+      parseDate(start);
+
+
+    end =
+      iso(
+        new Date(
+          d.getFullYear(),
+          d.getMonth()+1,
+          0
+        )
+      );
+
+  }
+
+
+  else if(
+    type === "weekly"
+  ){
+
+    end =
+      iso(
+        new Date(
+          parseDate(start)
+            .getTime()
+          +
+          6*86400000
+        )
+      );
+
+  }
+
+
+  else{
+
+    end =
+      document.getElementById(
+        "reportEnd"
+      ).value;
+
+  }
+
+
+  if(
+    !start ||
+    !end
+  ){
+
+    toast(
+      "Choose a valid date range.",
+      "err"
+    );
+
+    return;
+
+  }
+
+
+  let planned=[];
+
+  let paid=[];
+
+
+  activeBills()
+    .forEach(
+      b => {
+
+        occurrences(
+          b,
+          start,
+          end
+        )
+        .forEach(
+          d => {
+
+            let x={
+              b,
+              d
+            };
+
+
+            planned.push(x);
+
+
+            if(
+              billPaid(
+                b,
+                d
+              )
+            ){
+
+              paid.push(x);
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+  let useHistory =
+    document.getElementById(
+      "reportHistory"
+    ).value === "yes";
+
+
+  let list =
+    useHistory
+    ? paid
+    : planned;
+
+
+  let total =
+    list.reduce(
+      (s,x) =>
+        s +
+        Number(
+          x.b.amount || 0
+        ),
+      0
+    );
+
+
+  let categories={};
+
+
+  list.forEach(
+    x => {
+
+      let c =
+        x.b.category ||
+        "General";
+
+
+      categories[c] =
+        (
+          categories[c] ||
+          0
+        )
+        +
+        Number(
+          x.b.amount || 0
+        );
+
+    }
+  );
+
+
+  let income =
+    payDates(30)
+      .filter(
+        d =>
+          d >= parseDate(start) &&
+          d <= parseDate(end)
+      )
+      .length
+    *
+    Number(
+      state.settings.payAmount || 0
+    );
+
+
+  let savingsContribution =
+    Number(
+      state.savings.contribution ||
+      state.settings.savePerPay ||
+      0
+    );
+
+
+  let paycheckCount =
+    payDates(30)
+      .filter(
+        d =>
+          d >= parseDate(start) &&
+          d <= parseDate(end)
+      )
+      .length;
+
+
+  let savingsTotal =
+    savingsContribution *
+    paycheckCount;
+
+
+  document.getElementById(
+    "reportPreview"
+  ).innerHTML = `
+
+  <div class="report">
+
+    <div
+      class="reportActions noPrint"
+    >
+
+      <button
+        class="btn"
+        onclick="window.print()"
+      >
+        Print Report
+      </button>
+
+    </div>
+
+
+    <h3>
+      REDLINE —
+      ${
+        type === "monthly"
+        ? "MONTHLY"
+        : type === "weekly"
+        ? "WEEKLY"
+        : "CUSTOM"
+      }
+      MONEY REPORT
+    </h3>
+
+
+    <small>
+      ${fmtDate(start)}
+      —
+      ${fmtDate(end)}
+    </small>
+
+
+    <div class="reportgrid">
+
+      <div class="reportbox">
+
+        <span>
+          EST. INCOME
+        </span>
+
+        <b>
+          ${money(income)}
+        </b>
+
+      </div>
+
+
+      <div class="reportbox">
+
+        <span>
+          ${
+            useHistory
+            ? "PAID"
+            : "PLANNED"
+          }
+          BILLS
+        </span>
+
+        <b>
+          ${money(total)}
+        </b>
+
+      </div>
+
+
+      <div class="reportbox">
+
+        <span>
+          SAVINGS
+        </span>
+
+        <b>
+          ${money(
+            savingsTotal
+          )}
+        </b>
+
+      </div>
+
+
+      <div class="reportbox">
+
+        <span>
+          REMAINING
+        </span>
+
+        <b>
+          ${money(
+            income
+            -
+            total
+            -
+            savingsTotal
+          )}
+        </b>
+
+      </div>
+
+    </div>
+
+
+    <h4>
+      Expense Breakdown
+    </h4>
+
+
+    <table class="reporttable">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Category
+          </th>
+
+          <th>
+            Amount
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        ${
+          Object
+            .entries(
+              categories
+            )
+            .sort(
+              (a,b)=>
+                b[1]-a[1]
+            )
+            .map(
+              ([k,v]) =>
+              `
+
+              <tr>
+
+                <td>
+                  ${esc(k)}
+                </td>
+
+                <td>
+                  ${money(v)}
+                </td>
+
+              </tr>
+
+              `
+            )
+            .join("")
+          ||
+          `
+
+          <tr>
+
+            <td colspan="2">
+              No expenses in this period.
+            </td>
+
+          </tr>
+
+          `
+        }
+
+      </tbody>
+
+    </table>
+
+
+    <h4
+      style="margin-top:20px"
+    >
+      Bills
+    </h4>
+
+
+    <table class="reporttable">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Status
+          </th>
+
+          <th>
+            Bill
+          </th>
+
+          <th>
+            Due
+          </th>
+
+          <th>
+            Amount
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        ${
+          list
+            .map(
+              x =>
+              `
+
+              <tr>
+
+                <td>
+                  ${
+                    billPaid(
+                      x.b,
+                      x.d
+                    )
+                    ? "Paid"
+                    : "Planned"
+                  }
+                </td>
+
+                <td>
+                  ${esc(
+                    x.b.name
+                  )}
+                </td>
+
+                <td>
+                  ${fmtDate(
+                    x.d
+                  )}
+                </td>
+
+                <td>
+                  ${money(
+                    x.b.amount
+                  )}
+                </td>
+
+              </tr>
+
+              `
+            )
+            .join("")
+          ||
+          `
+
+          <tr>
+
+            <td colspan="4">
+              No bills.
+            </td>
+
+          </tr>
+
+          `
+        }
+
+      </tbody>
+
+    </table>
+
+
+    <p
+      style="
+        margin-top:22px;
+        font-size:9px;
+        color:#777
+      "
+    >
+      Generated by Redline ·
+      Your money. Your schedule. Your plan.
+    </p>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   DOWNLOAD / EXPORT
+========================================================= */
+
+function download(
+  name,
+  data
+){
+
+  let blob =
+    new Blob(
+      [data],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+
+  let url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  let a =
+    document.createElement(
+      "a"
+    );
+
+
+  a.href =
+    url;
+
+  a.download =
+    name;
+
+
+  document.body.appendChild(
+    a
+  );
+
+
+  a.click();
+
+
+  a.remove();
+
+
+  setTimeout(
+    () =>
+      URL.revokeObjectURL(
+        url
+      ),
+    1000
+  );
+
+}
+
+
+function exportAll(){
+
+  download(
+    "redline-backup-"+
+    today()+
+    ".json",
+
+    JSON.stringify(
+      state,
+      null,
+      2
+    )
+  );
+
+
+  toast(
+    "Full backup exported"
+  );
+
+}
+
+
+function exportBills(){
+
+  download(
+
+    "redline-bills-"+
+    today()+
+    ".json",
+
+    JSON.stringify(
+      {
+        schemaVersion:2,
+
+        exportDate:
+          new Date()
+            .toISOString(),
+
+        bills:
+          state.bills
+
+      },
+      null,
+      2
+    )
+
+  );
+
+
+  toast(
+    "Bills exported"
+  );
+
+}
+
+
+/* =========================================================
+   FILE IMPORT
+========================================================= */
+
+function readFile(
+  input,
+  cb
+){
+
+  let f =
+    input.files[0];
+
+
+  if(!f)
+    return;
+
+
+  let r =
+    new FileReader();
+
+
+  r.onload =
+    () => {
+
+      try{
+
+        cb(
+          JSON.parse(
+            r.result
+          )
+        );
+
+      }catch(e){
+
+        toast(
+          "Invalid JSON file.",
+          "err"
+        );
+
+      }
+
+    };
+
+
+  r.readAsText(f);
+
+
+  input.value = "";
+
+}
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+function init(){
+
+  load();
+
+
+  /* =========================
+     NAVIGATION
+  ========================= */
+
+  document
+    .querySelectorAll(
+      ".nav button"
+    )
+    .forEach(
+      btn => {
+
+        btn.onclick =
+          () => {
+
+            document
+              .querySelectorAll(
+                ".nav button"
+              )
+              .forEach(
+                x =>
+                  x.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            btn.classList.add(
+              "active"
+            );
+
+
+            document
+              .querySelectorAll(
+                ".page"
+              )
+              .forEach(
+                p =>
+                  p.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            document
+              .getElementById(
+                "page-"+
+                btn.dataset.page
+              )
+              .classList.add(
+                "active"
+              );
+
+
+            window.scrollTo(
+              0,
+              0
+            );
+
+          };
+
+      }
+    );
+
+
+  /* =========================
+     ADD BILL
+  ========================= */
+
+  document.getElementById(
+    "quickAdd"
+  ).onclick =
+    addBill;
+
+
+  document.getElementById(
+    "addBill"
+  ).onclick =
+    addBill;
+
+
+  /* =========================
+     PAYDAY SELECTOR
+  ========================= */
+
+  document.getElementById(
+    "payday"
+  ).addEventListener(
+    "change",
+    () => {
+
+      /*
+        Automatically move the selected
+        date to the next Thursday,
+        Friday, or Saturday.
+      */
+
+      adjustNextPayToSelectedDay();
+
+      /*
+        Update the stored value immediately
+        so the paycheck cards stay synced.
+      */
+
+      state.settings.payday =
+        document.getElementById(
+          "payday"
+        ).value;
+
+
+      state.settings.nextPay =
+        document.getElementById(
+          "nextPay"
+        ).value;
+
+
+      save();
+
+      renderPay();
+
+      toast(
+        "Payday updated"
+      );
+
+    }
+  );
+
+
+  /* =========================
+     NEXT PAYDAY INPUT
+  ========================= */
+
+  document.getElementById(
+    "nextPay"
+  ).addEventListener(
+    "change",
+    () => {
+
+      let selected =
+        document.getElementById(
+          "nextPay"
+        ).value;
+
+
+      let payday =
+        document.getElementById(
+          "payday"
+        ).value;
+
+
+      if(!selected)
+        return;
+
+
+      let adjusted =
+        nextMatchingWeekday(
+          selected,
+          payday
+        );
+
+
+      document.getElementById(
+        "nextPay"
+      ).value =
+        iso(adjusted);
+
+
+      state.settings.nextPay =
+        iso(adjusted);
+
+
+      save();
+
+      renderDashboard();
+
+      renderPay();
+
+    }
+  );
+
+
+  /* =========================
+     SAVE PAY SCHEDULE
+  ========================= */
+
+  document.getElementById(
+    "savePay"
+  ).onclick =
+    () => {
+
+      let frequency =
+        document.getElementById(
+          "frequency"
+        ).value;
+
+
+      let payday =
+        document.getElementById(
+          "payday"
+        ).value;
+
+
+      let nextPay =
+        document.getElementById(
+          "nextPay"
+        ).value;
+
+
+      /*
+        Make sure the entered date actually
+        matches the chosen payday.
+      */
+
+      if(nextPay){
+
+        nextPay =
+          iso(
+            nextMatchingWeekday(
+              nextPay,
+              payday
+            )
+          );
+
+      }
+
+
+      state.settings.frequency =
+        frequency;
+
+
+      state.settings.payday =
+        payday;
+
+
+      state.settings.nextPay =
+        nextPay ||
+        today();
+
+
+      state.settings.payAmount =
+        Number(
+          document.getElementById(
+            "payAmount"
+          ).value
+        )
+        ||
+        0;
+
+
+      state.settings.checking =
+        Number(
+          document.getElementById(
+            "checking"
+          ).value
+        )
+        ||
+        0;
+
+
+      state.settings.savePerPay =
+        Number(
+          document.getElementById(
+            "savePerPay"
+          ).value
+        )
+        ||
+        0;
+
+
+      save();
+
+      render();
+
+
+      /*
+        Re-display the corrected date in
+        case Redline adjusted it.
+      */
+
+      document.getElementById(
+        "nextPay"
+      ).value =
+        state.settings.nextPay;
+
+
+      toast(
+        "Pay schedule saved"
+      );
+
+    };
+
+
+  /* =========================
+     SAVE SAVINGS
+  ========================= */
+
+  document.getElementById(
+    "saveSavings"
+  ).onclick =
+    () => {
+
+      state.savings.current =
+        Number(
+          document.getElementById(
+            "savings"
+          ).value
+        )
+        ||
+        0;
+
+
+      state.savings.goal =
+        Number(
+          document.getElementById(
+            "goal"
+          ).value
+        )
+        ||
+        0;
+
+
+      state.savings.targetDate =
+        document.getElementById(
+          "targetDate"
+        ).value;
+
+
+      state.savings.contribution =
+        Number(
+          document.getElementById(
+            "contribution"
+          ).value
+        )
+        ||
+        0;
+
+
+      state.settings.savePerPay =
+        state.savings.contribution;
+
+
+      save();
+
+      render();
+
+
+      toast(
+        "Savings plan saved"
+      );
+
+    };
+
+
+  /* =========================
+     REPORT TYPE
+  ========================= */
+
+  document.getElementById(
+    "reportType"
+  ).onchange =
+    e => {
+
+      document.getElementById(
+        "reportEndWrap"
+      ).style.display =
+        e.target.value === "custom"
+        ? "flex"
+        : "none";
+
+    };
+
+
+  document.getElementById(
+    "generateReport"
+  ).onclick =
+    generateReport;
+
+
+  document.getElementById(
+    "printReport"
+  ).onclick =
+    () => {
+
+      generateReport();
+
+
+      setTimeout(
+        () =>
+          window.print(),
+        100
+      );
+
+    };
+
+
+  /* =========================
+     EXPORT
+  ========================= */
+
+  document.getElementById(
+    "exportAll"
+  ).onclick =
+    exportAll;
+
+
+  document.getElementById(
+    "exportBills"
+  ).onclick =
+    exportBills;
+
+
+  /* =========================
+     IMPORT FULL BACKUP
+  ========================= */
+
+  document.getElementById(
+    "importAll"
+  ).onclick =
+    () =>
+      document
+        .getElementById(
+          "allInput"
+        )
+        .click();
+
+
+  document.getElementById(
+    "allInput"
+  ).onchange =
+    e =>
+      readFile(
+        e.target,
+        data => {
+
+          if(
+            !confirm(
+              "Replace your current Redline data with this backup?"
+            )
+          ){
+
+            return;
+
+          }
+
+
+          if(
+            !data ||
+            !Array.isArray(
+              data.bills
+            )
+          ){
+
+            toast(
+              "Invalid Redline backup.",
+              "err"
+            );
+
+            return;
+
+          }
+
+
+          state = {
+
+            ...state,
+
+            ...data,
+
+            schemaVersion:2,
+
+            settings:{
+              ...state.settings,
+              ...(data.settings || {})
+            },
+
+            savings:{
+              ...state.savings,
+              ...(data.savings || {})
+            },
+
+            bills:
+              Array.isArray(
+                data.bills
+              )
+              ? data.bills
+              : [],
+
+            payments:
+              Array.isArray(
+                data.payments
+              )
+              ? data.payments
+              : []
+
+          };
+
+
+          /*
+            Make sure imported next payday
+            is consistent with the selected
+            weekday.
+          */
+
+          if(
+            state.settings.nextPay
+          ){
+
+            state.settings.nextPay =
+              iso(
+                nextMatchingWeekday(
+                  state.settings.nextPay,
+                  state.settings.payday
+                )
+              );
+
+          }
+
+
+          save();
+
+          render();
+
+
+          toast(
+            "Backup restored"
+          );
+
+        }
+      );
+
+
+  /* =========================
+     IMPORT BILLS
+  ========================= */
+
+  document.getElementById(
+    "importBills"
+  ).onclick =
+    () =>
+      document
+        .getElementById(
+          "billInput"
+        )
+        .click();
+
+
+  document.getElementById(
+    "billInput"
+  ).onchange =
+    e =>
+      readFile(
+        e.target,
+        data => {
+
+          if(
+            !Array.isArray(
+              data.bills
+            )
+          ){
+
+            toast(
+              "Invalid bill backup.",
+              "err"
+            );
+
+            return;
+
+          }
+
+
+          state.bills =
+            data.bills;
+
+
+          save();
+
+          render();
+
+
+          toast(
+            "Bills imported"
+          );
+
+        }
+      );
+
+
+  /* =========================
+     CLEAR DATA
+  ========================= */
+
+  document.getElementById(
+    "clearData"
+  ).onclick =
+    () => {
+
+      if(
+        confirm(
+          "Erase ALL Redline data from this browser? This cannot be undone unless you have a backup."
+        )
+      ){
+
+        localStorage.removeItem(
+          KEY
+        );
+
+        location.reload();
+
+      }
+
+    };
+
+
+  /* =========================
+     FIRST RUN
+  ========================= */
+
+  if(
+    !localStorage.getItem(
+      KEY
+    )
+  ){
+
+    toast(
+      "Welcome to Redline — add your first bill to begin."
+    );
+
+  }
+
+
+  /* =========================
+     INITIAL RENDER
+  ========================= */
+
+  render();
+
+}
+
+
+init();
+
+</script>
+
 </body>
 </html>
