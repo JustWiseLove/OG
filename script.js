@@ -445,19 +445,30 @@ function renderDashboard(){
   document.getElementById("dSavingsGoal").textContent =
     state.savings.goal ? money(state.savings.goal)+" goal" : "No goal";
 
+  // Safe to Spend = money actually in Checking, minus bills that must be paid
+  // BEFORE the next paycheck arrives. Bills on/after next payday are covered
+  // by that paycheck — they do not drain Safe to Spend from current Checking.
+  let nextPayDate = p ? parseDate(iso(p)) : null;
+  let dueBeforePay = 0;
+  if(nextPayDate){
+    up.forEach(x => {
+      if(billPaid(x.b, x.d)) return;
+      if(x.d < nextPayDate){
+        dueBeforePay += Number(x.b.amount||0);
+      }
+    });
+  }
+
   let safe =
     Number(state.settings.checking||0)
-    -
-    up.slice(0,10).reduce((s,x)=>
-      s + (billPaid(x.b, x.d) ? 0 : Number(x.b.amount||0)), 0)
-    -
-    Number(state.settings.savePerPay||0);
+    - dueBeforePay
+    - Number(state.settings.savePerPay||0);
 
   document.getElementById("safeSpend").textContent = money(safe);
   document.getElementById("safeNote").textContent =
     safe < 0
-    ? "Shortfall detected — upcoming obligations exceed available funds."
-    : "Checking after unpaid bills and planned savings. Paid bills free up this number.";
+    ? "Shortfall — checking cannot cover bills due before your next paycheck."
+    : "Checking after bills due before next paycheck and planned savings.";
 
   document.getElementById("safeHero").classList.toggle("warn", safe<0);
 
@@ -466,7 +477,7 @@ function renderDashboard(){
     ? `
     <div class="card" style="border-color:var(--danger-border);color:var(--safe-warn);font-size:12px">
       <b>⚠ Funding warning</b><br>
-      Review your upcoming bills or increase your available funds.
+      Bills due before your next paycheck exceed Checking.
     </div>`
     : "";
 
