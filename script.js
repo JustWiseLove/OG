@@ -11,13 +11,11 @@ function applyTheme(theme){
   document.documentElement.setAttribute("data-theme", t);
   localStorage.setItem(THEME_KEY, t);
 
-  // Update browser chrome color
   const meta = document.querySelector('meta[name="theme-color"]');
   if(meta){
     meta.content = t === "grayman" ? "#f0f0f2" : "#080808";
   }
 
-  // Sync theme cards
   document.querySelectorAll(".theme-card").forEach(card => {
     card.classList.toggle("active", card.dataset.theme === t);
   });
@@ -96,7 +94,6 @@ const uid = () =>
 const monthDays = (y,m) =>
   new Date(y,m+1,0).getDate();
 
-/* Snap a date forward to the preferred weekday (keeps same day if it already matches) */
 const weekdayMap = {
   Sunday:0, Monday:1, Tuesday:2, Wednesday:3,
   Thursday:4, Friday:5, Saturday:6
@@ -106,7 +103,7 @@ function snapToWeekday(dateStr, weekdayName){
   let d = parseDate(dateStr);
   if(!d) return dateStr || today();
   let target = weekdayMap[weekdayName];
-  if(target === undefined) target = 5; // Friday fallback
+  if(target === undefined) target = 5;
   let current = d.getDay();
   let diff = (target - current + 7) % 7;
   if(diff !== 0){
@@ -353,12 +350,10 @@ function markPaid(b,d){
   let amt = Number(b.amount)||0;
 
   if(i>=0){
-    // Undo paid → put the money back into checking
     state.payments.splice(i,1);
     state.settings.checking = Number(state.settings.checking||0) + amt;
     toast("Undid payment · +" + money(amt) + " returned to checking");
   }else{
-    // Mark paid → subtract from checking (leftover stays in Safe to Spend)
     state.payments.push({
       id:uid(),
       key,
@@ -419,7 +414,6 @@ function render(){
 function renderDashboard(){
   document.getElementById("dChecking").textContent = money(state.settings.checking);
 
-  // Keep the quick-update field in sync
   let qc = document.getElementById("quickChecking");
   if(qc && document.activeElement !== qc){
     qc.value = state.settings.checking || "";
@@ -527,6 +521,7 @@ function billHTML(b,d){
         >
           ${paid?"Undo":"Paid"}
         </button>
+        <button class="btn mini danger" onclick="deleteBill('${b.id}')">Delete</button>
       </div>
     </div>
   </div>
@@ -679,7 +674,7 @@ function renderReports(){
 
 /* MODAL */
 
-function openModal(title, body, onSave){
+function openModal(title, body, onSave, onDelete){
   let bg = document.getElementById("modalBg");
   let m = document.getElementById("modal");
 
@@ -690,6 +685,7 @@ function openModal(title, body, onSave){
     </div>
     ${body}
     <div class="modalfoot">
+      ${onDelete ? `<button class="btn danger" id="modalDelete">Delete</button>` : ""}
       <button class="btn" id="cancelModal">Cancel</button>
       <button class="btn primary" id="modalSave">Save</button>
     </div>
@@ -702,6 +698,12 @@ function openModal(title, body, onSave){
   document.getElementById("modalSave").onclick = () => {
     if(onSave()) closeModal();
   };
+
+  if(onDelete){
+    document.getElementById("modalDelete").onclick = () => {
+      if(onDelete()) closeModal();
+    };
+  }
 }
 
 
@@ -804,7 +806,16 @@ function showBill(b=null){
       render();
       toast(b ? "Bill updated" : "Bill added");
       return true;
-    }
+    },
+    b ? () => {
+      if(!confirm(`Delete "${b.name}"? This cannot be undone.`)) return false;
+      state.bills = state.bills.filter(x => x.id !== b.id);
+      state.payments = state.payments.filter(p => p.billId !== b.id);
+      save();
+      render();
+      toast("Bill deleted");
+      return true;
+    } : null
   );
 
   if(b){
@@ -816,6 +827,23 @@ function showBill(b=null){
 
 window.editBill = id =>
   showBill(state.bills.find(b=>b.id===id));
+
+
+function deleteBill(id){
+  let b = state.bills.find(x => x.id === id);
+  if(!b) return;
+
+  if(!confirm(`Delete "${b.name}"? This cannot be undone.`)) return;
+
+  state.bills = state.bills.filter(x => x.id !== id);
+  state.payments = state.payments.filter(p => p.billId !== id);
+
+  save();
+  render();
+  toast("Bill deleted");
+}
+
+window.deleteBill = deleteBill;
 
 
 function addBill(){
@@ -1044,7 +1072,6 @@ function init(){
   load();
   initTheme();
 
-  /* NAVIGATION */
   document.querySelectorAll(".nav button").forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll(".nav button").forEach(x => x.classList.remove("active"));
@@ -1056,16 +1083,13 @@ function init(){
     };
   });
 
-  /* ADD BILL */
   document.getElementById("quickAdd").onclick = addBill;
   document.getElementById("addBill").onclick = addBill;
 
-  /* SAVE PAYCHECK */
   document.getElementById("savePay").onclick = () => {
     state.settings.frequency = document.getElementById("frequency").value;
     state.settings.payday = document.getElementById("payday").value;
 
-    // Snap Next Payday to the preferred weekday
     let rawNext = document.getElementById("nextPay").value || today();
     state.settings.nextPay = snapToWeekday(rawNext, state.settings.payday);
 
@@ -1073,7 +1097,6 @@ function init(){
     state.settings.checking = Number(document.getElementById("checking").value) || 0;
     state.settings.savePerPay = Number(document.getElementById("savePerPay").value) || 0;
 
-    // Reflect the snapped date back into the input
     document.getElementById("nextPay").value = state.settings.nextPay;
 
     save();
@@ -1081,14 +1104,12 @@ function init(){
     toast("Pay schedule saved");
   };
 
-  /* Live snap when Preferred Payday changes */
   document.getElementById("payday").onchange = () => {
     let raw = document.getElementById("nextPay").value || today();
     let snapped = snapToWeekday(raw, document.getElementById("payday").value);
     document.getElementById("nextPay").value = snapped;
   };
 
-  /* Quick Update Checking Balance (Dashboard) */
   document.getElementById("updateChecking").onclick = () => {
     let val = Number(document.getElementById("quickChecking").value);
     if(isNaN(val) || val < 0){
@@ -1096,14 +1117,12 @@ function init(){
       return;
     }
     state.settings.checking = val;
-    // Keep the Paycheck page input in sync
     document.getElementById("checking").value = val || "";
     save();
     render();
     toast("Checking balance updated");
   };
 
-  /* SAVE SAVINGS */
   document.getElementById("saveSavings").onclick = () => {
     state.savings.current = Number(document.getElementById("savings").value) || 0;
     state.savings.goal = Number(document.getElementById("goal").value) || 0;
@@ -1116,7 +1135,6 @@ function init(){
     toast("Savings plan saved");
   };
 
-  /* REPORT TYPE */
   document.getElementById("reportType").onchange = e => {
     document.getElementById("reportEndWrap").style.display =
       e.target.value==="custom" ? "flex" : "none";
@@ -1129,18 +1147,15 @@ function init(){
     setTimeout(() => window.print(), 100);
   };
 
-  /* EXPORT */
   document.getElementById("exportAll").onclick = exportAll;
   document.getElementById("exportBills").onclick = exportBills;
 
-  /* IMPORT */
   document.getElementById("importAll").onclick = () =>
     document.getElementById("allInput").click();
 
   document.getElementById("importBills").onclick = () =>
     document.getElementById("billInput").click();
 
-  /* FULL IMPORT */
   document.getElementById("allInput").onchange = e =>
     readFile(e.target, data => {
       if(!confirm("Replace your current Redline data with this backup?")) return;
@@ -1156,7 +1171,6 @@ function init(){
       toast("Backup restored");
     });
 
-  /* BILL IMPORT */
   document.getElementById("billInput").onchange = e =>
     readFile(e.target, data => {
       if(!Array.isArray(data.bills)){
@@ -1170,7 +1184,6 @@ function init(){
       toast("Bills imported");
     });
 
-  /* CLEAR */
   document.getElementById("clearData").onclick = () => {
     if(confirm("Erase ALL Redline data from this browser? This cannot be undone unless you have a backup.")){
       localStorage.removeItem(KEY);
@@ -1178,7 +1191,6 @@ function init(){
     }
   };
 
-  /* FIRST RUN */
   if(!localStorage.getItem(KEY)){
     toast("Welcome to Redline — add your first bill to begin.");
   }
