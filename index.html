@@ -1,48 +1,389 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090909"><title>REDLINE — Money Planner</title>
-<style>
-:root{--bg:#090909;--panel:#151515;--panel2:#1d1d1d;--line:#303030;--text:#f7f7f7;--muted:#999;--red:#ed0b18;--green:#55df84;--yellow:#f2c94c;--r:20px}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{min-height:100vh}.app{padding-bottom:92px}header{position:sticky;top:0;z-index:20;background:rgba(9,9,9,.96);border-bottom:1px solid #252525;backdrop-filter:blur(14px)}.head{max-width:1150px;margin:auto;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:13px}.logo{width:52px;height:52px;border-radius:17px;background:var(--red);display:grid;place-items:center;font-size:28px;font-weight:950}.brand h1{margin:0;font-size:23px}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}.container{max-width:1150px;margin:auto;padding:28px 18px}.page{display:none}.page.active{display:block}.hero{margin-bottom:24px}.hero h2{font-size:42px;line-height:1;margin:0 0 10px;letter-spacing:-1.5px}.hero p{color:var(--muted);font-size:17px;margin:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:linear-gradient(145deg,#191919,#121212);border:1px solid var(--line);border-radius:var(--r);padding:19px}.stat{min-height:120px}.label{color:var(--muted);font-size:12px;font-weight:800}.value{font-size:29px;font-weight:950;margin-top:7px}.sub,.help{color:var(--muted);font-size:12px}.section{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:28px 0 13px}.section h3{margin:0;font-size:23px}.section span{color:var(--muted);font-size:12px}.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 19px}.full{grid-column:1/-1}label{display:block;color:#d5d5d5;font-size:14px;font-weight:800;margin-bottom:7px}input,select,textarea{display:block;width:100%;min-width:0;max-width:100%;height:56px;padding:0 15px;border:2px solid #303030;border-radius:16px;background:#0b0b0b;color:#f5f5f5;outline:none;box-shadow:none;font:inherit;-webkit-appearance:none;appearance:none}input:focus,select:focus,textarea:focus{border-color:#666}input[type=date]{width:100%;min-width:0;max-width:100%;padding-right:11px}input[type=date]::-webkit-date-and-time-value{text-align:left}input[type=date]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.85}textarea{height:105px;padding-top:13px;resize:vertical}select{padding-right:40px;background-image:linear-gradient(45deg,transparent 50%,#aaa 50%),linear-gradient(135deg,#aaa 50%,transparent 50%);background-position:calc(100% - 19px) 24px,calc(100% - 13px) 24px;background-size:6px 6px;background-repeat:no-repeat}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.btn,.primary{border:1px solid #3a3a3a;border-radius:15px;background:#252525;color:#fff;padding:13px 16px;font-weight:900}.primary,.red{background:var(--red);border-color:var(--red)}.danger{background:#321015;border-color:#5c2026;color:#ff8990}.list{display:grid;gap:11px}.item{background:#111;border:1px solid #303030;border-radius:17px;padding:15px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.main{min-width:0}.title{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{color:var(--muted);font-size:12px;margin-top:4px}.right{text-align:right;flex:0 0 auto}.amount{font-weight:950;font-size:18px}.item-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:7px}.icon{border:1px solid #3a3a3a;background:#202020;color:#fff;border-radius:10px;padding:7px 9px;font-size:11px;font-weight:850}.badge{display:inline-block;padding:6px 9px;border-radius:999px;font-size:10px;font-weight:950;text-transform:uppercase}.good{background:#102b1a;color:var(--green)}.bad{background:#341116;color:#ff737c}.neutral{background:#252525;color:#aaa}.empty{padding:27px;text-align:center;border:1px dashed #3b3b3b;border-radius:17px;color:#888}.progress{height:10px;background:#2a2a2a;border-radius:99px;overflow:hidden;margin-top:13px}.progress div{height:100%;background:var(--red);width:0}.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.kpi{background:#101010;border:1px solid #2c2c2c;border-radius:15px;padding:13px}.kpi span{font-size:10px;color:#777;font-weight:850}.kpi b{display:block;font-size:21px;margin-top:3px}.report{background:#fff;color:#111;border-radius:17px;padding:22px;min-height:170px}.report .muted{color:#666}.report hr{border:0;border-top:1px solid #ddd;margin:17px 0}.tablewrap{overflow:auto;border:1px solid #ddd;border-radius:13px}.table{width:100%;min-width:590px;border-collapse:collapse}.table th,.table td{text-align:left;padding:10px 12px;border-bottom:1px solid #ddd;font-size:12px}.table th{font-size:10px;color:#666}.table tr:last-child td{border-bottom:0}.bottom{position:fixed;z-index:30;left:0;right:0;bottom:0;background:rgba(14,14,14,.98);border-top:1px solid #292929;padding:7px 6px calc(7px + env(safe-area-inset-bottom))}.nav{max-width:720px;margin:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:3px}.nav button{border:0;background:transparent;color:#818181;border-radius:15px;padding:7px 2px;font-size:10px;font-weight:850}.nav i{font-style:normal;font-size:20px;display:block}.nav button.active{background:#202020;color:#fff}.nav button.active i{color:var(--red)}.toast{position:fixed;z-index:80;left:50%;bottom:100px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#eee;color:#111;padding:11px 15px;border-radius:13px;font-weight:850;transition:.2s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.modal{display:none;position:fixed;z-index:70;inset:0;background:rgba(0,0,0,.72);padding:15px;align-items:center;justify-content:center}.modal.open{display:flex}.modalbox{width:min(620px,100%);max-height:90vh;overflow:auto;background:#171717;border:1px solid #3a3a3a;border-radius:23px;padding:19px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.modalhead h3{margin:0}.close{border:1px solid #3a3a3a;background:#242424;color:#fff;border-radius:10px;padding:8px 11px}.switch{width:50px;height:29px;border:0;border-radius:99px;background:#444;padding:3px}.switch span{display:block;width:23px;height:23px;border-radius:50%;background:#fff;transition:.2s}.switch.on{background:var(--red)}.switch.on span{transform:translateX(21px)}.row{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:11px 0}.footer{text-align:center;color:#666;font-size:11px;margin:25px 0}@media(max-width:760px){.head{padding:13px 12px}.logo{width:47px;height:47px}.brand h1{font-size:21px}.brand p{font-size:11px}.primary{padding:11px 13px}.container{padding:24px 13px}.hero h2{font-size:37px}.hero p{font-size:15px}.grid,.grid3,.form,.kpis{grid-template-columns:1fr}.card{padding:16px}.item{padding:14px}.right{min-width:106px}}@media print{body{background:#fff;color:#111}.bottom,header,.no-print,.hero{display:none!important}.container{padding:0}.page{display:none!important}.page.printing{display:block!important}.report{box-shadow:none;border:0}}
-</style></head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>Redline — Money Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-<div class="app"><header><div class="head"><div class="brand"><div class="logo">R</div><div><h1>REDLINE</h1><p>Your money. Your schedule. Your plan.</p></div></div><button class="primary" onclick="go('bills')">＋ Bill</button></div></header>
-<main class="container">
-<section id="home" class="page active"><div class="hero"><h2>Money at a glance.</h2><p>Know what is due, what is funded, and what is left.</p></div><div class="grid3"><div class="card stat"><div class="label">Monthly bills</div><div id="homeBills" class="value">$0.00</div><div class="sub">recurring base</div></div><div class="card stat"><div class="label">Savings</div><div id="homeSavings" class="value">$0.00</div><div class="sub">current balance</div></div><div class="card stat"><div class="label">Next payday</div><div id="homePayday" class="value">—</div><div id="homePayAmount" class="sub">$0.00 expected</div></div></div><div class="section"><h3>Upcoming bills</h3><span id="upcomingCount"></span></div><div id="homeList" class="list"></div></section>
-<section id="bills" class="page"><div class="hero"><h2>Bills</h2><p>Add each expense and choose its exact due date.</p></div><div class="card"><div class="form"><div><label>Bill name</label><input id="bn" placeholder="Rent, phone, insurance..."></div><div><label>Amount</label><input id="ba" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div><div><label>Due date</label><input id="bd" type="date"></div><div><label>Frequency</label><select id="bf"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="biweekly">Every 2 weeks</option><option value="once">One time</option></select></div><div><label>Category</label><select id="bc"><option>Housing</option><option>Utilities</option><option>Transportation</option><option>Insurance</option><option>Debt</option><option>Subscriptions</option><option>Food</option><option>Personal</option><option>Other</option></select></div><div><label>Auto-pay</label><select id="bp"><option value="no">No</option><option value="yes">Yes</option></select></div><div class="full"><label>Note</label><input id="bnote" placeholder="Optional note"></div></div><div class="actions"><button class="btn red" onclick="addBill()">Add Bill</button><button class="btn" onclick="clearBillForm()">Clear</button></div></div><div class="section"><h3>Your bills</h3><span id="billTotal"></span></div><div id="billList" class="list"></div></section>
-<section id="paycheck" class="page"><div class="hero"><h2>Paycheck</h2><p>Set weekly or bi-weekly pay periods and let Redline assign bills.</p></div><div class="card"><div class="form"><div><label>Pay frequency</label><select id="pf"><option value="weekly">Every week</option><option value="biweekly">Every 2 weeks</option></select></div><div><label>Payday</label><select id="pd"><option>Thursday</option><option>Friday</option><option>Saturday</option></select></div><div><label>Next payday</label><input id="pnext" type="date"></div><div><label>Typical paycheck</label><input id="pamt" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div><div><label>Checking balance</label><input id="pcheck" type="number" inputmode="decimal" step="0.01" placeholder="0.00"></div><div><label>Savings / paycheck</label><input id="psave" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div></div><div class="actions"><button class="btn red" onclick="savePay()">Save Pay Schedule</button></div></div><div class="section"><h3>Upcoming paychecks</h3><span>Next 8</span></div><div id="payList" class="list"></div></section>
-<section id="savings" class="page"><div class="hero"><h2>Savings</h2><p>Track a savings balance and target separately from checking.</p></div><div class="grid"><div class="card"><h3>Savings account</h3><label>Current balance</label><input id="sb" type="number" inputmode="decimal" step="0.01"><div style="height:14px"></div><label>Savings goal</label><input id="sg" type="number" inputmode="decimal" min="0" step="0.01"><div class="actions"><button class="btn red" onclick="saveSavings()">Save Savings</button></div></div><div class="card"><h3>Goal progress</h3><div id="sv" class="value">$0.00</div><div class="progress"><div id="sp"></div></div><p id="st" class="help">Set a goal to see progress.</p></div></div></section>
-<section id="reports" class="page"><div class="hero"><h2>Reports</h2><p>Print or save a clean expense report for any period.</p></div><div class="card no-print"><div class="form"><div><label>Report type</label><select id="rt" onchange="reportMode()"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="custom">Custom range</option></select></div><div><label>Month / start date</label><input id="rs" type="date"></div><div id="rewrap" style="display:none"><label>End date</label><input id="re" type="date"></div><div><label>Include paid history</label><select id="ri"><option value="yes">Yes</option><option value="no">No</option></select></div></div><div class="actions"><button class="btn red" onclick="report()">Generate Report</button><button class="btn" onclick="printReport()">Print / Save PDF</button></div></div><div class="section"><h3>Report preview</h3><span id="rr"></span></div><div id="report" class="report"><span class="muted">Choose a period and generate your report.</span></div></section>
-<section id="settings" class="page"><div class="hero"><h2>Settings</h2><p>Export your data so you can move or restore your budget anytime.</p></div><div class="grid"><div class="card"><h3>Backup & restore</h3><p class="help">Your data stays in this browser. Export a JSON backup to your files and import it later.</p><div class="actions"><button class="btn red" onclick="exportData()">Export Data</button><button class="btn" onclick="document.getElementById('file').click()">Import Data</button><input id="file" type="file" accept=".json,application/json" hidden onchange="importData(event)"></div></div><div class="card"><h3>Data controls</h3><div class="row"><span>Confirm before deleting</span><button id="sw" class="switch on" onclick="toggleConfirm()"><span></span></button></div><div class="actions"><button class="btn danger" onclick="wipe()">Delete All Data</button></div></div></div><div class="footer">REDLINE stores data locally. Export a backup regularly.</div></section>
+
+<div class="app">
+
+<header class="top">
+  <div class="brand">
+    <div class="logo">R</div>
+    <div>
+      <strong>REDLINE</strong>
+      <div class="tag">Your money. Your schedule. Your plan.</div>
+    </div>
+  </div>
+
+  <button class="btn primary" id="quickAdd">＋ Bill</button>
+</header>
+
+<main class="main">
+
+<!-- DASHBOARD -->
+<section class="page active" id="page-dashboard">
+
+<h1>Dashboard</h1>
+<p class="sub" id="dashSub">Your money at a glance.</p>
+
+<div class="hero" id="safeHero">
+  <div class="eyebrow">Safe to Spend</div>
+  <div class="heroVal" id="safeSpend">$0.00</div>
+  <div class="muted" id="safeNote">Set up your paycheck schedule to begin.</div>
+</div>
+
+<div id="dashAlert" style="margin-top:10px"></div>
+
+<div class="metrics">
+  <div class="card metric">
+    <label>Checking</label>
+    <strong id="dChecking">$0</strong>
+    <span class="muted">Available balance</span>
+  </div>
+
+  <div class="card metric">
+    <label>Next Paycheck</label>
+    <strong id="dPay">$0</strong>
+    <span class="muted" id="dPayDate">Not set</span>
+  </div>
+
+  <div class="card metric">
+    <label>Upcoming Bills</label>
+    <strong class="red" id="dBills">$0</strong>
+    <span class="muted" id="dBillCount">0 bills</span>
+  </div>
+
+  <div class="card metric">
+    <label>Savings</label>
+    <strong class="green" id="dSavings">$0</strong>
+    <span class="muted" id="dSavingsGoal">No goal</span>
+  </div>
+</div>
+
+<!-- Quick Checking Update -->
+<div class="card" style="margin-top:12px">
+  <div class="eyebrow" style="margin-bottom:8px">Quick Update</div>
+  <div class="row" style="align-items:center;gap:8px">
+    <div class="field" style="flex:1;min-width:0">
+      <label>Checking Balance</label>
+      <input type="number" min="0" step=".01" id="quickChecking" placeholder="0.00">
+    </div>
+    <button class="btn primary" id="updateChecking" style="margin-top:18px;white-space:nowrap">
+      Update
+    </button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Upcoming Bills</h2>
+  <span id="upCount">0</span>
+</div>
+
+<div class="list" id="dashBills"></div>
+
+<div class="section">
+  <h2>Next Paycheck Plan</h2>
+</div>
+
+<div id="dashPay"></div>
+
+</section>
+
+
+<!-- BILLS -->
+<section class="page" id="page-bills">
+
+<h1>Bills</h1>
+<p class="sub">Track every recurring and one-time obligation.</p>
+
+<div class="row noPrint">
+  <button class="btn primary" id="addBill">＋ Add Bill</button>
+  <button class="btn" id="exportBills">Export Bills</button>
+  <button class="btn" id="importBills">Import Bills</button>
+  <input hidden type="file" id="billInput" accept=".json,application/json">
+</div>
+
+<div class="metrics">
+  <div class="card metric">
+    <label>Active Bills</label>
+    <strong id="bCount">0</strong>
+    <span class="muted">Tracked obligations</span>
+  </div>
+
+  <div class="card metric">
+    <label>Monthly Estimate</label>
+    <strong class="red" id="bMonthly">$0</strong>
+    <span class="muted">Normalized estimate</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Your Bills</h2>
+  <span id="bListCount">0</span>
+</div>
+
+<div class="list" id="billList"></div>
+
+</section>
+
+
+<!-- PAYCHECK -->
+<section class="page" id="page-paycheck">
+
+<h1>Paycheck</h1>
+<p class="sub">Tell Redline when you get paid and let it plan the money.</p>
+
+<div class="card">
+  <div class="grid two">
+
+    <div class="field">
+      <label>Pay Frequency</label>
+      <select id="frequency">
+        <option value="biweekly">Every 2 weeks</option>
+        <option value="weekly">Every week</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Preferred Payday</label>
+      <select id="payday">
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Next Payday</label>
+      <input type="date" id="nextPay">
+      <div class="muted" style="font-size:10px;margin-top:4px">
+        Will snap to your preferred weekday
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Typical Paycheck</label>
+      <input type="number" min="0" step=".01" id="payAmount" placeholder="0.00">
+    </div>
+
+    <div class="field">
+      <label>Checking Balance</label>
+      <input type="number" min="0" step=".01" id="checking" placeholder="0.00">
+    </div>
+
+    <div class="field">
+      <label>Savings / Paycheck</label>
+      <input type="number" min="0" step=".01" id="savePerPay" placeholder="0.00">
+    </div>
+
+  </div>
+
+  <button class="btn primary full" style="margin-top:12px" id="savePay">
+    Save Pay Schedule
+  </button>
+</div>
+
+<div class="section">
+  <h2>Upcoming Paychecks</h2>
+  <span>Next 8</span>
+</div>
+
+<div class="list" id="payList"></div>
+
+</section>
+
+
+<!-- SAVINGS -->
+<section class="page" id="page-savings">
+
+<h1>Savings</h1>
+<p class="sub">Give every savings goal a destination.</p>
+
+<div class="card">
+  <div class="eyebrow">Current Savings</div>
+  <div class="heroVal" id="sCurrent">$0</div>
+  <div class="muted" id="sTarget">No goal set.</div>
+
+  <div class="progress" style="margin-top:14px">
+    <div class="bar" id="sBar" style="width:0"></div>
+  </div>
+
+  <div class="metrics" style="margin-top:10px">
+    <div class="card metric">
+      <label>Goal</label>
+      <strong id="sGoal">$0</strong>
+    </div>
+    <div class="card metric">
+      <label>Remaining</label>
+      <strong id="sRemain">$0</strong>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Savings Plan</h2>
+</div>
+
+<div class="card">
+  <div class="grid two">
+    <div class="field">
+      <label>Current Savings</label>
+      <input type="number" min="0" step=".01" id="savings" placeholder="0.00">
+    </div>
+
+    <div class="field">
+      <label>Savings Goal</label>
+      <input type="number" min="0" step=".01" id="goal" placeholder="0.00">
+    </div>
+
+    <div class="field">
+      <label>Target Date</label>
+      <input type="date" id="targetDate">
+    </div>
+
+    <div class="field">
+      <label>Contribution / Paycheck</label>
+      <input type="number" min="0" step=".01" id="contribution" placeholder="0.00">
+    </div>
+  </div>
+
+  <button class="btn primary full" style="margin-top:12px" id="saveSavings">
+    Save Savings Plan
+  </button>
+</div>
+
+</section>
+
+
+<!-- REPORTS -->
+<section class="page" id="page-reports">
+
+<h1>Reports</h1>
+<p class="sub">Print or save a clean expense report for any period.</p>
+
+<div class="card noPrint">
+  <div class="grid two">
+    <div class="field">
+      <label>Report Type</label>
+      <select id="reportType">
+        <option value="monthly">Monthly</option>
+        <option value="weekly">Weekly</option>
+        <option value="custom">Custom Range</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Month / Start Date</label>
+      <input type="date" id="reportStart">
+    </div>
+
+    <div class="field" id="reportEndWrap" style="display:none">
+      <label>End Date</label>
+      <input type="date" id="reportEnd">
+    </div>
+
+    <div class="field">
+      <label>Include Paid History</label>
+      <select id="reportHistory">
+        <option value="yes">Yes</option>
+        <option value="no">Planned bills only</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:12px">
+    <button class="btn primary" id="generateReport">Generate Report</button>
+    <button class="btn" id="printReport">Print / Save PDF</button>
+  </div>
+</div>
+
+<div class="section noPrint">
+  <h2>Report Preview</h2>
+</div>
+
+<div id="reportPreview"></div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section class="page" id="page-settings">
+
+<h1>Settings</h1>
+<p class="sub">Protect, move, and manage your Redline data.</p>
+
+<div class="section">
+  <h2>Backup & Restore</h2>
+</div>
+
+<div class="card">
+  <p class="muted" style="margin:0 0 14px">
+    Redline automatically saves in this browser.
+    Backups let you move your budget to another device or keep a safe copy.
+  </p>
+
+  <div class="row">
+    <button class="btn primary" id="exportAll">Export Full Backup</button>
+    <button class="btn" id="importAll">Import Full Backup</button>
+    <input hidden type="file" id="allInput" accept=".json,application/json">
+  </div>
+</div>
+
+<div class="section">
+  <h2>Danger Zone</h2>
+</div>
+
+<div class="card">
+  <button class="btn danger full" id="clearData">
+    Erase All Redline Data
+  </button>
+</div>
+
+</section>
+
 </main>
-<nav class="bottom"><div class="nav"><button class="active" data-page="home" onclick="go('home')"><i>⌂</i>Home</button><button data-page="bills" onclick="go('bills')"><i>▤</i>Bills</button><button data-page="paycheck" onclick="go('paycheck')"><i>$</i>Paycheck</button><button data-page="savings" onclick="go('savings')"><i>◇</i>Savings</button><button data-page="reports" onclick="go('reports')"><i>▥</i>Reports</button><button data-page="settings" onclick="go('settings')"><i>⚙</i>Settings</button></div></nav></div>
-<div id="toast" class="toast"></div><div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="modalbox"><div class="modalhead"><h3>Edit Bill</h3><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
-<script>
-const KEY='redline_v4';const $=id=>document.getElementById(id);const now=new Date();now.setHours(0,0,0,0);let S=load(),editId=null;
-function base(){return{bills:[],paid:[],pay:{frequency:'biweekly',day:'Friday',next:'',amount:0,checking:0,save:0},savings:{balance:0,goal:0},settings:{confirm:true}}}function load(){try{let x=localStorage.getItem(KEY);return x?Object.assign(base(),JSON.parse(x)):base()}catch{return base()}}function save(){localStorage.setItem(KEY,JSON.stringify(S));render()}
-function iso(d){return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)}function fmt(x){return x?new Date(x+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'—'}function add(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}function money(n){return Number(n||0).toLocaleString('en-US',{style:'currency',currency:'USD'})}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2)}function toast(x){let t=$('toast');t.textContent=x;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2200)}
-function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='reports')report()}
-function occ(b,start,end){let out=[],d=new Date(b.due+'T00:00:00');if(b.freq==='once'){if(d>=start&&d<=end)out.push(iso(d));return out}let step=b.freq==='weekly'?7:b.freq==='biweekly'?14:0;if(step){while(d<start)d=add(d,step);while(d<=end){out.push(iso(d));d=add(d,step)}}else{let y=start.getFullYear(),m=start.getMonth();while(new Date(y,m,1)<=end){let day=Math.min(new Date(b.due+'T00:00:00').getDate(),new Date(y,m+1,0).getDate()),x=new Date(y,m,day);if(x>=start&&x<=end)out.push(iso(x));m++;if(m>11){m=0;y++}}}return out}
-function rows(start,end){let a=[];S.bills.forEach(b=>occ(b,start,end).forEach(d=>a.push({b,d})));return a.sort((a,b)=>a.d.localeCompare(b.d))}function paid(id,d){return S.paid.includes(id+'|'+d)}function togglePaid(id,d){let k=id+'|'+d,i=S.paid.indexOf(k);if(i>=0)S.paid.splice(i,1);else S.paid.push(k);save()}
-function addBill(){let name=$('bn').value.trim(),amount=Number($('ba').value),due=$('bd').value;if(!name||!due||amount<0||isNaN(amount)){toast('Enter a name, amount, and due date.');return}S.bills.push({id:uid(),name,amount,due,freq:$('bf').value,cat:$('bc').value,auto:$('bp').value,note:$('bnote').value.trim()});save();clearBillForm();toast('Bill added.')}
-function clearBillForm(){$('bn').value='';$('ba').value='';$('bd').value=iso(now);$('bf').value='monthly';$('bc').value='Housing';$('bp').value='no';$('bnote').value=''}
-function delBill(id){if(S.settings.confirm&&!confirm('Delete this bill?'))return;S.bills=S.bills.filter(b=>b.id!==id);save();toast('Bill deleted.')}
-function editBill(id){let b=S.bills.find(x=>x.id===id);if(!b)return;editId=id;$('modalBody').innerHTML=`<div class="form"><div><label>Bill name</label><input id="en" value="${esc(b.name)}"></div><div><label>Amount</label><input id="ea" type="number" step="0.01" value="${b.amount}"></div><div><label>Due date</label><input id="ed" type="date" value="${b.due}"></div><div><label>Frequency</label><select id="ef"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="biweekly">Every 2 weeks</option><option value="once">One time</option></select></div><div><label>Category</label><select id="ec"><option>Housing</option><option>Utilities</option><option>Transportation</option><option>Insurance</option><option>Debt</option><option>Subscriptions</option><option>Food</option><option>Personal</option><option>Other</option></select></div><div><label>Auto-pay</label><select id="ep"><option value="no">No</option><option value="yes">Yes</option></select></div><div class="full"><label>Note</label><input id="enote" value="${esc(b.note||'')}"></div></div><div class="actions"><button class="btn red" onclick="updateBill()">Save Changes</button></div>`;$('ef').value=b.freq;$('ec').value=b.cat;$('ep').value=b.auto;$('modal').classList.add('open')}
-function updateBill(){let b=S.bills.find(x=>x.id===editId);let amount=Number($('ea').value);if(!b||!$('en').value.trim()||!$('ed').value||isNaN(amount)||amount<0){toast('Complete the bill fields.');return}Object.assign(b,{name:$('en').value.trim(),amount,due:$('ed').value,freq:$('ef').value,cat:$('ec').value,auto:$('ep').value,note:$('enote').value.trim()});closeModal();save();toast('Bill updated.')}
-function closeModal(){$('modal').classList.remove('open');editId=null}
-function savePay(){S.pay={frequency:$('pf').value,day:$('pd').value,next:$('pnext').value,amount:Number($('pamt').value)||0,checking:Number($('pcheck').value)||0,save:Number($('psave').value)||0};save();toast('Pay schedule saved.')}
-function pays(){if(!S.pay.next)return[];let d=new Date(S.pay.next+'T00:00:00'),step=S.pay.frequency==='weekly'?7:14,a=[];for(let i=0;i<8;i++){a.push(new Date(d));d=add(d,step)}return a}
-function payBills(d){let start=new Date(d),end=add(d,S.pay.frequency==='weekly'?6:13);return rows(start,end)}
-function saveSavings(){S.savings={balance:Number($('sb').value)||0,goal:Number($('sg').value)||0};save();toast('Savings updated.')}
-function reportMode(){$('rewrap').style.display=$('rt').value==='custom'?'block':'none';report()}
-function report(){let sv=$('rs').value;if(!sv)return;let s=new Date(sv+'T00:00:00'),e;if($('rt').value==='monthly')e=new Date(s.getFullYear(),s.getMonth()+1,0);else if($('rt').value==='weekly'){let day=s.getDay(),diff=day===0?-6:1-day;s=add(s,diff);e=add(s,6)}else e=new Date(($('re').value||sv)+'T00:00:00');let rr=rows(s,e),total=rr.reduce((a,r)=>a+r.b.amount,0),pt=rr.filter(r=>paid(r.b.id,r.d)).reduce((a,r)=>a+r.b.amount,0);$('rr').textContent=fmt(iso(s))+' – '+fmt(iso(e));let h=`<h2>REDLINE Expense Report</h2><div class="muted">${fmt(iso(s))} – ${fmt(iso(e))}</div><hr><div class="kpis"><div class="kpi"><span>TOTAL</span><b>${money(total)}</b></div><div class="kpi"><span>BILLS</span><b>${rr.length}</b></div><div class="kpi"><span>PAID</span><b>${money(pt)}</b></div></div><hr>`;if(!rr.length)h+='<p>No bills fall within this period.</p>';else{h+='<div class="tablewrap"><table class="table"><tr><th>Due</th><th>Bill</th><th>Category</th><th>Status</th><th>Amount</th></tr>';rr.forEach(r=>h+=`<tr><td>${fmt(r.d)}</td><td>${esc(r.b.name)}</td><td>${esc(r.b.cat)}</td><td>${paid(r.b.id,r.d)?'Paid':'Due'}</td><td>${money(r.b.amount)}</td></tr>`);h+='</table></div><hr><b style="font-size:24px">Total: '+money(total)+'</b>'}$('report').innerHTML=h}
-function printReport(){$('reports').classList.add('printing');setTimeout(()=>{window.print();setTimeout(()=>$('reports').classList.remove('printing'),250)},50)}
-function exportData(){let x={app:'REDLINE',version:4,exportedAt:new Date().toISOString(),data:S},blob=new Blob([JSON.stringify(x,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='redline-backup-'+iso(now)+'.json';a.click();URL.revokeObjectURL(a.href);toast('Backup exported.')}
-function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result),d=x.data||x;if(!Array.isArray(d.bills)||!d.pay||!d.savings)throw 0;S=Object.assign(base(),d);save();toast('Backup imported.')}catch{toast('Invalid Redline backup.')}e.target.value=''};r.readAsText(f)}
-function toggleConfirm(){S.settings.confirm=!S.settings.confirm;save()}function wipe(){if(!confirm('Delete all Redline data from this browser?'))return;localStorage.removeItem(KEY);location.reload()}
-function render(){let monthly=S.bills.reduce((a,b)=>a+b.amount,0);$('homeBills').textContent=money(monthly);$('homeSavings').textContent=money(S.savings.balance);let ps=pays(),np=ps[0];$('homePayday').textContent=np?np.toLocaleDateString('en-US',{month:'short',day:'numeric'}):'—';$('homePayAmount').textContent=money(S.pay.amount)+' expected';$('upcomingCount').textContent=rows(now,add(now,45)).length+' upcoming';let hl=$('homeList');hl.innerHTML='';rows(now,add(now,45)).slice(0,6).forEach(r=>hl.insertAdjacentHTML('beforeend',`<div class="item"><div class="main"><div class="title">${esc(r.b.name)}</div><div class="meta">${fmt(r.d)} · ${esc(r.b.cat)}</div></div><div class="right"><span class="badge ${paid(r.b.id,r.d)?'good':'neutral'}">${paid(r.b.id,r.d)?'Paid':'Due'}</span><div class="amount">${money(r.b.amount)}</div></div></div>`));if(!hl.innerHTML)hl.innerHTML='<div class="empty">No upcoming bills.</div>';
-$('billTotal').textContent=money(monthly)+' recurring base';let bl=$('billList');bl.innerHTML='';S.bills.slice().sort((a,b)=>a.due.localeCompare(b.due)).forEach(b=>{let next=occ(b,now,add(now,370))[0];bl.insertAdjacentHTML('beforeend',`<div class="item"><div class="main"><div class="title">${esc(b.name)}</div><div class="meta">${esc(b.cat)} · ${b.freq} · ${b.auto==='yes'?'Auto-pay':'Manual'}${b.note?' · '+esc(b.note):''}</div></div><div class="right"><div class="amount">${money(b.amount)}</div><div class="meta">Next: ${fmt(next)}</div><div class="item-actions">${next?`<button class="icon" onclick="togglePaid('${b.id}','${next}')">${paid(b.id,next)?'✓ Paid':'Mark paid'}</button>`:''}<button class="icon" onclick="editBill('${b.id}')">Edit</button><button class="icon" onclick="delBill('${b.id}')">Delete</button></div></div></div>`)});if(!bl.innerHTML)bl.innerHTML='<div class="empty">No bills yet. Add your first bill above.</div>';
-$('pf').value=S.pay.frequency;$('pd').value=S.pay.day;$('pnext').value=S.pay.next||iso(now);$('pamt').value=S.pay.amount||'';$('pcheck').value=S.pay.checking||'';$('psave').value=S.pay.save||'';let pl=$('payList');pl.innerHTML='';ps.forEach(d=>{let br=payBills(d),total=br.reduce((a,r)=>a+r.b.amount,0),left=S.pay.amount-S.pay.save-total;pl.insertAdjacentHTML('beforeend',`<div class="item"><div class="main"><div class="title">${d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div><div class="meta">${br.length?br.map(r=>esc(r.b.name)+' · '+money(r.b.amount)).join('<br>'):'No bills assigned to this pay period.'}</div></div><div class="right"><span class="badge ${left>=0?'good':'bad'}">${left>=0?'On track':'Short'}</span><div class="amount">${money(S.pay.amount)}</div><div class="meta">Bills ${money(total)} · Save ${money(S.pay.save)} · Left ${money(left)}</div></div></div>`)});if(!pl.innerHTML)pl.innerHTML='<div class="empty">Set your next payday above.</div>';
-$('sb').value=S.savings.balance;$('sg').value=S.savings.goal;$('sv').textContent=money(S.savings.balance);let pct=S.savings.goal?Math.min(100,S.savings.balance/S.savings.goal*100):0;$('sp').style.width=pct+'%';$('st').textContent=S.savings.goal?money(Math.max(0,S.savings.goal-S.savings.balance))+' remaining · '+pct.toFixed(0)+'% complete':'Set a goal to see progress.';$('sw').classList.toggle('on',S.settings.confirm)}
-function init(){let t=iso(now);$('bd').value=t;$('pnext').value=S.pay.next||t;let first=new Date(now.getFullYear(),now.getMonth(),1);$('rs').value=iso(first);$('re').value=t;render()}init();
-</script></body></html>
+</div>
+
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <button class="active" data-page="dashboard">
+    <i>⌂</i> Home
+  </button>
+  <button data-page="bills">
+    <i>▤</i> Bills
+  </button>
+  <button data-page="paycheck">
+    <i>$</i> Paycheck
+  </button>
+  <button data-page="savings">
+    <i>◇</i> Savings
+  </button>
+  <button data-page="reports">
+    <i>▥</i> Reports
+  </button>
+  <button data-page="settings">
+    <i>⚙</i> Settings
+  </button>
+</nav>
+
+
+<!-- MODAL -->
+<div class="modalbg" id="modalBg">
+  <div class="modal" id="modal"></div>
+</div>
+
+
+<!-- TOAST -->
+<div class="toastbox" id="toastbox"></div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
